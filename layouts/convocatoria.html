@@ -1,0 +1,71 @@
+{{ define "main" }}
+  {{- /* Shared call template (mockups/inner/b/convocatorias-2-template.html): Premios AJL and Ayudas económicas. */ -}}
+  <div class="sec sec--white tpl">
+    <div class="wrap tpl__grid">
+      {{- with .Params.entradilla }}
+      <p class="tpl__lead">{{ . | $.RenderString }}</p>
+      {{- end }}
+      {{- with .Params.resumen }}
+      <aside class="facts cpanel bleed" aria-labelledby="resumen">
+        <h2 class="facts__title" id="resumen">{{ .titulo }}</h2>
+        <dl class="facts__list">
+          {{- range .datos }}
+          <div class="fact"><dt>{{ .etiqueta }}</dt>{{ range .valores }}<dd>{{ . | $.RenderString }}</dd>{{ end }}</div>
+          {{- end }}
+        </dl>
+      </aside>
+      {{- end }}
+      <div class="prose tpl__text">
+        {{ .Content }}
+        {{- with .Params.destacado }}
+        <div class="winner">
+          {{ . | $.RenderString (dict "display" "block") }}
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+
+  {{- with .Params.palmares }}
+  <section class="sec sec--page palmares" aria-labelledby="palmares">
+    <div class="wrap sec__inner">
+      <h2 class="sec__title" id="palmares">{{ .titulo }}</h2>
+      <ol class="editions">
+        {{- range .ediciones }}
+        <li class="edition">
+          <h3>{{ .edicion }}</h3>
+          <p class="edition__thesis"><em>{{ .tesis }}</em></p>
+          <p class="edition__who">{{ .autor }}</p>
+          <p>{{ .detalle }}</p>
+        </li>
+        {{- end }}
+      </ol>
+    </div>
+  </section>
+  {{- end }}
+
+  {{- if or .Params.documentos .Params.resoluciones }}
+  <section class="sec sec--white docsec" aria-labelledby="documentos">
+    <div class="wrap sec__inner docsec__grid">
+      <h2 class="sec__title" id="documentos">Documentos</h2>
+      {{- with .Params.documentos }}
+      <ul class="docs">
+        {{- range $i, $d := . }}
+        <li class="doc"><span class="doc__name" id="doc-{{ add $i 1 }}">{{ $d.nombre }}</span><a class="doc__get" href="{{ $d.archivo | relURL }}" aria-describedby="doc-{{ add $i 1 }}">Descarga</a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+      {{- with .Params.resoluciones }}
+      <div class="resgroup">
+        <h3>{{ .titulo | $.RenderString }}</h3>
+        <ul class="reslist">
+          {{- range .enlaces }}
+          <li><a class="link" href="{{ .archivo | relURL }}">{{ .nombre }}</a></li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+{{ end }}

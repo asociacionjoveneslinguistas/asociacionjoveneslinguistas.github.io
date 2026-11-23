@@ -1,0 +1,12 @@
+{{- /* Inner pages: header 2, the sage band (mockups/inner/a/header-2-band.html). Context: the page. */ -}}
+<header class="mast mast--band"{{ if ne .Language.Lang "es" }} lang="es"{{ end }}>
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false"><defs>{{ partial "seal-g.html" . }}</defs></svg>
+  <div class="wrap mast__inner">
+    {{ partial "mast-line.html" . }}
+    <div class="band__body">
+      <a class="home-link" href="{{ "/" | relURL }}"><span class="home-link__seal"><svg viewBox="0 0 2784 2859" aria-hidden="true" focusable="false"><use href="#ajl-seal"/></svg></span><span>{{ hugo.Data.sitio.nombre }}</span></a>
+      <h1 class="page-title"{{ if ne .Language.Lang "es" }} lang="{{ .Language.Lang }}"{{ end }}>{{ .Title }}</h1>
+    </div>
+    <div class="mast__rule" aria-hidden="true"></div>
+  </div>
+</header>

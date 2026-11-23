@@ -1,0 +1,724 @@
+# Pages CMS (https://pagescms.org): the editing forms for the AJL site. Labels are in Spanish for the board.
+# Page texts live in content/ (Markdown); structured data in data/ (YAML).
+# Hidden fields keep technical values (layout, url, translation keys) that editors should not change.
+
+media:
+  - name: archivos
+    label: Documentos (PDF, Word)
+    input: static/wp-content/uploads
+    output: /wp-content/uploads
+    categories: [document]
+  - name: imagenes
+    label: Imágenes
+    input: static/imagenes
+    output: /imagenes
+    categories: [image]
+
+components:
+  cuerpo:
+    label: Texto de la página
+    type: rich-text
+    options:
+      format: markdown
+      media: imagenes
+  documento:
+    label: Documento
+    type: object
+    fields:
+      - name: nombre
+        label: Nombre del documento
+        type: string
+        required: true
+      - name: archivo
+        label: Archivo
+        type: file
+        required: true
+        options:
+          media: archivos
+
+content:
+  # ------------------------------------------------------------------ páginas
+  - name: inicio
+    label: Portada
+    type: file
+    path: content/_index.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Título de bienvenida
+        type: string
+        required: true
+      - name: llamada
+        label: Frase destacada («¡Anímate y ven!»)
+        type: string
+      - name: destacados
+        label: Bloques de la portada
+        type: object
+        fields:
+          - name: congreso
+            label: Página del próximo congreso (ruta)
+            type: string
+            description: Por ejemplo /xxxiv-congreso-santiago-2024/. Se muestran su título y su texto.
+          - name: socio
+            label: Bloque «Hazte socio»
+            type: object
+            fields:
+              - name: pagina
+                label: Página (ruta)
+                type: string
+              - name: texto
+                label: Pregunta
+                type: string
+          - name: convocatorias
+            label: Bloque de convocatorias (las dos primeras en la columna izquierda)
+            type: object
+            list: true
+            fields:
+              - name: pagina
+                label: Página (ruta)
+                type: string
+              - name: texto
+                label: Frase (opcional)
+                type: text
+      - name: translationKey
+        type: string
+        hidden: true
+      - name: body
+        component: cuerpo
+        label: Párrafos de bienvenida
+
+  - name: paginas
+    label: Páginas
+    type: collection
+    path: content
+    format: yaml-frontmatter
+    subfolders: false
+    exclude: [_index.md, _index.ca.md, _index.gl.md, _index.eu.md, _index.en.md, estatutos.md, congresos-anteriores.md, premios-ajl.md, ayudas-economicas.md, publicaciones.md, socios-fundadores.md, contacto.md]
+    view:
+      fields: [title]
+      primary: title
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: llamada
+        label: Frase destacada (solo en las páginas de bienvenida en otras lenguas)
+        type: string
+      - name: url
+        type: string
+        hidden: true
+      - name: translationKey
+        type: string
+        hidden: true
+      - name: layout
+        type: string
+        hidden: true
+      - name: body
+        component: cuerpo
+
+  - name: seminarios
+    label: Seminarios AJL (página y ciclos)
+    type: collection
+    path: content/seminarios-ajl
+    format: yaml-frontmatter
+    view:
+      fields: [title]
+      primary: title
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: body
+        component: cuerpo
+
+  - name: estatutos
+    label: Estatutos
+    type: file
+    path: content/estatutos.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Título
+        type: string
+      - name: documento
+        label: Estatutos en PDF (se muestran en el lector)
+        type: object
+        fields:
+          - name: titulo
+            label: Título del documento
+            type: string
+          - name: archivo
+            label: Archivo PDF
+            type: file
+            options:
+              media: archivos
+              extensions: [pdf]
+      - name: layout
+        type: string
+        hidden: true
+      - name: body
+        component: cuerpo
+        label: Texto introductorio
+
+  - name: congreso_anual
+    label: Congreso anual (texto y candidaturas de sede)
+    type: file
+    path: content/congresos-anteriores.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Título
+        type: string
+      - name: documentos
+        label: Documentos para presentar una candidatura de sede
+        component: documento
+        list: true
+      - name: layout
+        type: string
+        hidden: true
+      - name: body
+        component: cuerpo
+        label: Texto de «Candidaturas de sede»
+
+  - name: premios
+    label: Premios AJL
+    type: file
+    path: content/premios-ajl.md
+    format: yaml-frontmatter
+    fields: &convocatoria
+      - name: title
+        label: Título
+        type: string
+      - name: entradilla
+        label: Entradilla (frase inicial destacada)
+        type: text
+      - name: resumen
+        label: Recuadro de resumen
+        type: object
+        fields:
+          - name: titulo
+            label: Título del recuadro
+            type: string
+          - name: datos
+            label: Datos
+            type: object
+            list: true
+            fields:
+              - name: etiqueta
+                label: Etiqueta
+                type: string
+              - name: valores
+                label: Valores (admite **negrita**)
+                type: string
+                list: true
+      - name: destacado
+        label: Resolución destacada al final del texto (opcional)
+        type: text
+      - name: palmares
+        label: Palmarés (opcional)
+        type: object
+        fields:
+          - name: titulo
+            label: Título
+            type: string
+          - name: ediciones
+            label: Ediciones
+            type: object
+            list: true
+            fields:
+              - name: edicion
+                label: Edición
+                type: string
+              - name: tesis
+                label: Título de la tesis
+                type: text
+              - name: autor
+                label: Persona premiada
+                type: string
+              - name: detalle
+                label: Dirección, universidad y año
+                type: text
+      - name: documentos
+        label: Documentos
+        component: documento
+        list: true
+      - name: resoluciones
+        label: Resoluciones por ediciones (opcional)
+        type: object
+        fields:
+          - name: titulo
+            label: Título
+            type: string
+          - name: enlaces
+            label: Resoluciones
+            component: documento
+            list: true
+      - name: layout
+        type: string
+        hidden: true
+      - name: body
+        component: cuerpo
+        description: 'Para mostrar un documento como fila con «Descarga» dentro del texto, escriba el enlace así: [Nombre](/wp-content/uploads/año/mes/archivo.pdf "Descarga")'
+
+  - name: ayudas
+    label: Ayudas económicas
+    type: file
+    path: content/ayudas-economicas.md
+    format: yaml-frontmatter
+    fields: *convocatoria
+
+  - name: miembros
+    label: Junta Directiva (miembros actuales)
+    type: collection
+    path: content/junta-directiva
+    format: yaml-frontmatter
+    exclude: [_index.md]
+    filename: '{fields.slug}.md'
+    view:
+      fields: [title, cargo]
+      primary: title
+      sort: [orden]
+      default:
+        sort: orden
+        order: asc
+    fields:
+      - name: title
+        label: Nombre
+        type: string
+        required: true
+      - name: slug
+        label: Dirección de la página (sin tildes ni espacios, p. ej. olga-popova)
+        type: string
+        required: true
+        pattern:
+          regex: ^[a-z0-9-]+$
+          message: Solo minúsculas sin tilde, números y guiones
+      - name: cargo
+        label: Cargo
+        type: string
+      - name: universidad
+        label: Universidad
+        type: string
+      - name: correo
+        label: Correo electrónico
+        type: string
+      - name: orcid
+        label: ORCID iD (solo los 16 dígitos, p. ej. 0000-0001-7084-3140)
+        type: string
+        pattern:
+          regex: ^$|^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$
+          message: Formato 0000-0000-0000-0000
+      - name: retrato
+        label: Retrato
+        type: image
+        options:
+          media: imagenes
+      - name: biodata
+        label: Biodata en PDF
+        type: file
+        options:
+          media: archivos
+      - name: orden
+        label: Orden en la lista
+        type: number
+      - name: layout
+        type: string
+        hidden: true
+        default: miembro
+      - name: body
+        component: cuerpo
+        label: Biodata
+
+  - name: junta
+    label: Junta Directiva (página, histórico y antiguos miembros)
+    type: file
+    path: content/junta-directiva/_index.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Título
+        type: string
+      - name: historico
+        label: Histórico de Juntas Directivas
+        type: object
+        fields:
+          - name: titulo
+            label: Título de la sección
+            type: string
+      - name: antiguos
+        label: Miembros de Juntas Directivas anteriores
+        type: object
+        fields:
+          - name: titulo
+            label: Título de la sección
+            type: string
+          - name: texto
+            label: Texto
+            type: text
+          - name: nombres
+            label: Nombres (Apellidos, Nombre)
+            type: string
+            list: true
+      - name: layout
+        type: string
+        hidden: true
+      - name: aliases
+        type: string
+        list: true
+        hidden: true
+      - name: ancla_alias
+        type: string
+        hidden: true
+
+  # ------------------------------------------------------------------ datos
+  - name: juntas
+    label: Juntas por curso
+    type: collection
+    path: data/juntas
+    format: yaml
+    filename: '{fields.curso}.yaml'
+    view:
+      fields: [curso]
+      primary: curso
+      default:
+        sort: curso
+        order: desc
+    fields:
+      - name: curso
+        label: Curso (p. ej. 2025-2026); el más reciente es la Junta actual
+        type: string
+        required: true
+        pattern:
+          regex: ^\d{4}-\d{4}$
+          message: Formato 2025-2026
+      - name: documento
+        label: PDF de la Junta de ese curso (opcional)
+        type: object
+        fields:
+          - name: titulo
+            label: Texto del enlace
+            type: string
+          - name: archivo
+            label: Archivo
+            type: file
+            options:
+              media: archivos
+      - name: cargos
+        label: Cargos
+        type: object
+        list: true
+        fields:
+          - name: miembro
+            label: Miembro actual (deja vacíos los campos siguientes para tomar sus datos)
+            type: reference
+            options:
+              collection: miembros
+              search: title
+              value: '{slug}'
+              label: '{title}'
+          - name: cargo
+            label: Cargo
+            type: string
+          - name: nombre
+            label: Nombre
+            type: string
+          - name: universidad
+            label: Universidad
+            type: string
+          - name: orcid
+            label: ORCID iD
+            type: string
+
+  - name: congresos
+    label: Congresos (una ficha por edición)
+    type: collection
+    path: data/congresos
+    format: yaml
+    filename: '{fields.edicion}-{fields.numero}.yaml'
+    view:
+      fields: [nombre, anio]
+      primary: nombre
+      sort: [edicion]
+      default:
+        sort: edicion
+        order: desc
+    fields:
+      - name: numero
+        label: Número romano (p. ej. XLII)
+        type: string
+        required: true
+      - name: edicion
+        label: Número de edición (p. ej. 42)
+        type: number
+        required: true
+      - name: nombre
+        label: Nombre (p. ej. XLII Congreso Internacional)
+        type: string
+        required: true
+      - name: anio
+        label: Año
+        type: number
+        required: true
+      - name: fechas
+        label: Fechas (como en la lista, p. ej. 7-9/10/2026)
+        type: string
+      - name: universidad
+        label: Universidad
+        type: string
+      - name: idioma
+        label: Lengua del nombre de la universidad, si no es castellano
+        type: select
+        options:
+          values:
+            - name: ''
+              label: Castellano
+            - name: ca
+              label: Catalán
+            - name: gl
+              label: Gallego
+            - name: eu
+              label: Euskera
+            - name: en
+              label: Inglés
+      - name: web
+        label: Web del congreso
+        type: string
+      - name: libro
+        label: Libro de resúmenes (dirección web o ruta /wp-content/uploads/…)
+        type: string
+      - name: portada
+        label: Portada del libro de resúmenes (se muestra en «Últimos congresos»)
+        type: image
+        options:
+          media: imagenes
+      - name: sede
+        label: Ciudad en el mapa (identificador de «Sedes del mapa», p. ej. salamanca)
+        type: string
+        required: true
+      - name: proximo
+        label: Es el próximo congreso (tramo discontinuo en el mapa)
+        type: boolean
+      - name: pagina
+        label: Página del próximo congreso (ruta, solo si es el próximo)
+        type: string
+      - name: trazado
+        label: Curva del tramo que llega a esta sede (opcional, dos números «x y»)
+        type: string
+
+  - name: sedes
+    label: Sedes del mapa
+    type: file
+    path: data/sedes.yaml
+    format: yaml
+    fields:
+      - name: sedes
+        label: Ciudades
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{fields.ciudad}'
+        fields:
+          - name: id
+            label: Identificador (minúsculas, sin tildes)
+            type: string
+            required: true
+          - name: ciudad
+            label: Ciudad
+            type: string
+            required: true
+          - name: latitud
+            label: Latitud (grados decimales, p. ej. 40.97)
+            type: number
+          - name: longitud
+            label: Longitud (grados decimales, negativa al oeste de Greenwich, p. ej. -5.66)
+            type: number
+          - name: etiqueta
+            label: Lado de los números romanos
+            type: select
+            options:
+              values: [derecha, izquierda]
+          - name: ajustes
+            label: Ajustes de la etiqueta
+            type: select
+            options:
+              multiple: true
+              values:
+                - name: fondo
+                  label: Fondo verde detrás de los números
+                - name: costa
+                  label: Halo blanco (ciudad junto al mar)
+                - name: separada
+                  label: Etiqueta más separada del punto
+
+  - name: publicaciones
+    label: Publicaciones (una ficha por libro)
+    type: collection
+    path: data/publicaciones
+    format: yaml
+    filename: '{fields.anio}-{fields.titulo}.yaml'
+    view:
+      fields: [titulo, anio]
+      primary: titulo
+      sort: [anio]
+      default:
+        sort: anio
+        order: desc
+    fields:
+      - name: editores
+        label: Editores o coordinadores, como en la cita
+        type: text
+        required: true
+      - name: funcion
+        label: Función entre paréntesis (Eds., Coords., eds., coords.; vacío si no hay)
+        type: string
+      - name: anio
+        label: Año
+        type: number
+        required: true
+      - name: titulo
+        label: Título del libro
+        type: string
+        required: true
+      - name: idioma_titulo
+        label: Lengua del título, si no es castellano
+        type: select
+        options:
+          values:
+            - name: ''
+              label: Castellano
+            - name: ca
+              label: Catalán
+            - name: gl
+              label: Gallego
+            - name: eu
+              label: Euskera
+            - name: en
+              label: Inglés
+      - name: enlace
+        label: Enlace del título (página de la editorial)
+        type: string
+      - name: editorial
+        label: Resto de la cita (lugar y editorial, con el punto final)
+        type: string
+      - name: portada
+        label: Cubierta
+        type: image
+        options:
+          media: imagenes
+      - name: orden
+        label: Orden dentro del mismo año
+        type: number
+
+  - name: socios
+    label: Socios fundadores
+    type: collection
+    path: data/socios
+    format: yaml
+    filename: '{fields.orden}-{fields.nombre}.yaml'
+    view:
+      fields: [nombre]
+      primary: nombre
+      default:
+        sort: orden
+        order: asc
+    fields:
+      - name: nombre
+        label: Nombre
+        type: string
+        required: true
+      - name: cargo
+        label: Puesto (opcional)
+        type: text
+      - name: institucion
+        label: Universidad (fundación AJL y actualmente)
+        type: text
+      - name: orcid
+        label: ORCID iD (solo si está confirmado; vacío si no)
+        type: string
+      - name: orden
+        label: Orden en la lista
+        type: number
+
+  - name: sitio
+    label: Dirección y contacto (pie de página y Contacto)
+    type: file
+    path: data/sitio.yaml
+    format: yaml
+    fields:
+      - name: nombre
+        label: Nombre de la asociación
+        type: string
+      - name: otros_nombres
+        label: El nombre en otras lenguas
+        type: object
+        list: true
+        fields:
+          - name: texto
+            label: Nombre
+            type: string
+          - name: idioma
+            label: Código de lengua (ca, eu, en, gl)
+            type: string
+      - name: direccion
+        label: Dirección (una línea por campo)
+        type: string
+        list: true
+      - name: correo
+        label: Correo electrónico
+        type: object
+        fields: &contacto
+          - name: etiqueta
+            label: Etiqueta en la página Contacto
+            type: string
+          - name: texto
+            label: Texto visible
+            type: string
+          - name: enlace
+            label: Enlace
+            type: string
+      - name: instagram
+        label: Instagram
+        type: object
+        fields: *contacto
+      - name: x
+        label: X (Twitter)
+        type: object
+        fields: *contacto
+
+  - name: menu
+    label: Menú y mapa del sitio
+    type: file
+    path: data/menu.yaml
+    format: yaml
+    fields:
+      - name: entradas
+        label: Entradas
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{fields.titulo}'
+        fields:
+          - name: titulo
+            label: Texto
+            type: string
+          - name: enlace
+            label: Enlace (ruta del sitio o dirección externa)
+            type: string
+          - name: subpaginas
+            label: Subentradas
+            type: object
+            list: true
+            fields:
+              - name: titulo
+                label: Texto
+                type: string
+              - name: enlace
+                label: Enlace
+                type: string
+              - name: idioma
+                label: Código de lengua si no es castellano
+                type: string

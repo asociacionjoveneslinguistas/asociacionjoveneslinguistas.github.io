@@ -1,0 +1,68 @@
+/* Production additions: what the free-text pages, the language welcome pages, the member portrait and Contacto need.
+   Every value is a token from design.md or the inner-page variants. */
+
+h4 { margin: 0; }
+
+/* Free text converted from WordPress (Markdown) */
+.prose > * { margin: 0; }
+.prose ul, .prose ol { display: grid; gap: var(--space-2xs); padding-inline-start: var(--space-lg); }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li::marker { color: var(--color-heading); }
+.prose strong { font-weight: 600; }
+.prose hr { width: 100%; height: 0; margin: 0; border: 0; border-top: var(--rule-hair) solid var(--color-hairline); }
+.prose img { display: block; max-width: 100%; height: auto; }
+.prose p:has(> img, > a > img) { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md); }
+.prose p:has(> img, > a > img) a { display: block; }
+.prose a:has(> img) { border-radius: var(--space-3xs); }
+.prose a { overflow-wrap: anywhere; }
+
+/* A document named in running text (Premios AJL: «el formulario adjunto tras este párrafo»): the document-row pattern */
+.prose p:has(> .doc__get) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--space-lg);
+  padding-block: var(--space-xs);
+  border-block: var(--rule-hair) solid var(--color-hairline);
+}
+.prose .doc__get { color: var(--color-accent); }
+
+/* Call template: the winner note under the text (the document row above already draws the hairline) */
+.winner > * { margin: 0; }
+.prose p:has(> .doc__get) + .winner { padding-top: 0; border-top: 0; }
+
+/* Language welcome pages: the home's welcome section without its title (the title is the band's h1) */
+.welcome--inner { padding-block: var(--space-2xl) var(--space-3xl); }
+@media (min-width: 60rem) {
+  .welcome--inner .welcome__prose { grid-row: 1; }
+  .welcome--inner .welcome__aside { grid-row: 1; }
+}
+
+/* Member page: the portrait from the biodata PDF, framed as the PDF frames it (a circle) */
+.person__portrait {
+  width: min(100%, 14rem);
+  height: auto;
+  aspect-ratio: 1;
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-pill);
+  object-fit: cover;
+}
+
+/* Contacto: address, then the three contact rows with their source labels */
+.contacto { display: grid; gap: var(--space-xl); }
+.contacto__dir { max-width: var(--measure); font-style: normal; }
+.contacto__list { display: grid; gap: var(--space-md); }
+.contacto__row { display: grid; gap: var(--space-3xs); }
+.contacto__row dt { color: var(--color-heading); font-size: var(--text-sm); font-weight: 600; line-height: var(--leading-head); letter-spacing: var(--tracking-label); }
+.contacto__row dd { margin: 0; }
+.contacto .contact { font-size: var(--text-sm); }
+@media (min-width: 40rem) {
+  .contacto .contact { font-size: var(--text-base); }
+  .contacto__row { grid-template-columns: 12rem minmax(0, 1fr); align-items: center; column-gap: var(--space-lg); }
+}
+@media (min-width: 60rem) {
+  .contacto { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--space-lg); }
+  .contacto__dir { grid-column: 1 / span 5; }
+  .contacto__list { grid-column: 7 / span 6; align-content: start; }
+}

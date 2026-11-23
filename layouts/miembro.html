@@ -1,0 +1,21 @@
+{{ define "main" }}
+  {{- $parent := .Parent }}
+  <section class="sec sec--white" aria-label="{{ .Title }}">
+    <div class="wrap person">
+      <div class="person__facts">
+        <a class="more more--back" href="{{ $parent.RelPermalink }}">{{ partial "icons/arrow-back.html" "" }}<span>{{ $parent.Title }}</span></a>
+        {{- with .Params.retrato }}
+        {{- $f := printf "static%s" . }}
+        {{- $cfg := cond (fileExists $f) (images.Config $f) dict }}
+        <img class="person__portrait" src="{{ . | relURL }}"{{ with $cfg }} width="{{ .Width }}" height="{{ .Height }}"{{ end }} alt="" decoding="async">
+        {{- end }}
+        <p class="member__role">{{ .Params.cargo }}</p>
+        <p class="member__uni">{{ .Params.universidad }}</p>
+        <div class="member__links">{{ with .Params.correo }}{{ partial "contact-email.html" . }}{{ end }}{{ with .Params.orcid }}{{ partial "contact-orcid.html" . }}{{ end }}</div>
+      </div>
+      <div class="person__bio prose">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+{{ end }}

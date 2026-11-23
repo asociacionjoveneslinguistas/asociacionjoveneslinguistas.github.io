@@ -1,0 +1,9 @@
+{{- /* Links in Markdown. A link titled "Descarga" becomes a document row: the name as text and «Descarga» as the link (the Congreso and Premios pattern). */ -}}
+{{- $u := .Destination -}}
+{{- $href := cond (hasPrefix $u "/") (relURL $u) $u -}}
+{{- if eq .Title "Descarga" -}}
+{{- $id := printf "doc-%s" (substr (md5 $u) 0 8) -}}
+<span class="doc__name" id="{{ $id }}">{{ .Text }}</span> <a class="doc__get" href="{{ $href }}" aria-describedby="{{ $id }}">Descarga</a>
+{{- else -}}
+<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if hasPrefix $u "http" }} rel="noopener"{{ end }}>{{ .Text }}</a>
+{{- end -}}

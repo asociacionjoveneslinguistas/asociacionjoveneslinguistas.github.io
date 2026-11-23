@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{- $s := hugo.Data.sitio }}
+  <section class="sec sec--white">
+    <div class="wrap contacto">
+      <address class="contacto__dir">{{ delimit $s.direccion "<br>" | safeHTML }}</address>
+      <dl class="contacto__list">
+        <div class="contacto__row"><dt>{{ $s.correo.etiqueta }}</dt><dd><a class="contact" href="{{ $s.correo.enlace }}">{{ partial "icons/envelope.html" "contact__ico" }}<span>{{ $s.correo.texto }}</span></a></dd></div>
+        <div class="contacto__row"><dt>{{ $s.instagram.etiqueta }}</dt><dd><a class="contact" href="{{ $s.instagram.enlace }}" rel="noopener">{{ partial "icons/instagram.html" "contact__ico" }}<span>{{ $s.instagram.texto }}</span></a></dd></div>
+        <div class="contacto__row"><dt>{{ $s.x.etiqueta }}</dt><dd><a class="contact" href="{{ $s.x.enlace }}" rel="noopener">{{ partial "icons/x.html" "contact__ico" }}<span>{{ $s.x.texto }}</span></a></dd></div>
+      </dl>
+    </div>
+  </section>
+{{ end }}

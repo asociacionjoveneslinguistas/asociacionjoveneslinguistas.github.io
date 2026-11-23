@@ -1,0 +1,158 @@
+# Cities on the Congreso anual map. Positions are computed from latitude and longitude.
+# etiqueta: side of the Roman numerals; ajustes: fondo (tint knock-out), costa (white halo by the sea), separada (label further from the dot).
+sedes:
+- id: barcelona
+  ciudad: Barcelona
+  latitud: 41.38879
+  longitud: 2.15899
+  etiqueta: derecha
+  ajustes:
+  - costa
+- id: santiago
+  ciudad: Santiago de Compostela
+  latitud: 42.88052
+  longitud: -8.54569
+  etiqueta: derecha
+  ajustes:
+  - fondo
+  - costa
+- id: oviedo
+  ciudad: Oviedo
+  latitud: 43.36029
+  longitud: -5.84476
+  etiqueta: derecha
+  ajustes: []
+- id: valencia
+  ciudad: Valencia
+  latitud: 39.46975
+  longitud: -0.37739
+  etiqueta: derecha
+  ajustes:
+  - costa
+- id: murcia
+  ciudad: Murcia
+  latitud: 37.98704
+  longitud: -1.13004
+  etiqueta: izquierda
+  ajustes: []
+- id: madrid
+  ciudad: Madrid
+  latitud: 40.4165
+  longitud: -3.70256
+  etiqueta: derecha
+  ajustes: []
+- id: vitoria
+  ciudad: Vitoria-Gasteiz
+  latitud: 42.84998
+  longitud: -2.67268
+  etiqueta: izquierda
+  ajustes: []
+- id: coruna
+  ciudad: A Coruña
+  latitud: 43.37135
+  longitud: -8.396
+  etiqueta: derecha
+  ajustes: []
+- id: leon
+  ciudad: León
+  latitud: 42.60003
+  longitud: -5.57032
+  etiqueta: derecha
+  ajustes: []
+- id: jaen
+  ciudad: Jaén
+  latitud: 37.76922
+  longitud: -3.79028
+  etiqueta: derecha
+  ajustes: []
+- id: salamanca
+  ciudad: Salamanca
+  latitud: 40.96882
+  longitud: -5.66388
+  etiqueta: derecha
+  ajustes:
+  - fondo
+- id: caceres
+  ciudad: Cáceres
+  latitud: 39.47649
+  longitud: -6.37224
+  etiqueta: derecha
+  ajustes: []
+- id: sevilla
+  ciudad: Sevilla
+  latitud: 37.38283
+  longitud: -5.97317
+  etiqueta: derecha
+  ajustes:
+  - fondo
+- id: huelva
+  ciudad: Huelva
+  latitud: 37.26638
+  longitud: -6.94004
+  etiqueta: izquierda
+  ajustes: []
+- id: alicante
+  ciudad: Alicante
+  latitud: 38.34517
+  longitud: -0.48149
+  etiqueta: derecha
+  ajustes:
+  - costa
+- id: malaga
+  ciudad: Málaga
+  latitud: 36.72016
+  longitud: -4.42034
+  etiqueta: izquierda
+  ajustes:
+  - separada
+- id: logrono
+  ciudad: Logroño
+  latitud: 42.46667
+  longitud: -2.45
+  etiqueta: derecha
+  ajustes: []
+- id: girona
+  ciudad: Girona
+  latitud: 41.98311
+  longitud: 2.82493
+  etiqueta: derecha
+  ajustes:
+  - costa
+- id: valladolid
+  ciudad: Valladolid
+  latitud: 41.65518
+  longitud: -4.72372
+  etiqueta: derecha
+  ajustes: []
+- id: pamplona
+  ciudad: Pamplona
+  latitud: 42.81687
+  longitud: -1.64323
+  etiqueta: derecha
+  ajustes: []
+- id: comillas
+  ciudad: Comillas
+  latitud: 43.38603
+  longitud: -4.29162
+  etiqueta: derecha
+  ajustes: []
+- id: vigo
+  ciudad: Vigo
+  latitud: 42.23282
+  longitud: -8.72264
+  etiqueta: derecha
+  ajustes:
+  - fondo
+  - costa
+- id: ciudad-real
+  ciudad: Ciudad Real
+  latitud: 38.98626
+  longitud: -3.92907
+  etiqueta: derecha
+  ajustes: []
+- id: zaragoza
+  ciudad: Zaragoza
+  latitud: 41.65606
+  longitud: -0.87734
+  etiqueta: derecha
+  ajustes: []

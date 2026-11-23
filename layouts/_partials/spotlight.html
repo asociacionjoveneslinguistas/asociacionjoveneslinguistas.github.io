@@ -1,0 +1,8 @@
+<dialog class="cmdk" id="cmdk" aria-label="Búsqueda rápida"{{ if ne .Language.Lang "es" }} lang="es"{{ end }}>
+  <div class="cmdk__field">
+    <svg class="cmdk__ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.16"/><path d="M15.4 15.4L20.5 20.5" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <input class="cmdk__input" id="cmdk-input" type="text" role="combobox" aria-expanded="true" aria-controls="cmdk-list" aria-autocomplete="list" aria-label="Búsqueda rápida" placeholder="Buscar …" autocomplete="off" spellcheck="false">
+  </div>
+  <ul class="cmdk__list" id="cmdk-list" role="listbox" aria-label="Búsqueda rápida"></ul>
+  <p class="cmdk__empty" id="cmdk-empty" role="status"></p>
+</dialog>

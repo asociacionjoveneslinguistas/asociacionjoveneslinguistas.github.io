@@ -1,0 +1,11 @@
+{
+  "name": "ajl-asociacion-web",
+  "private": true,
+  "description": "Website of the Asociación de Jóvenes Lingüistas (Hugo). npm is only used to copy pdf.js into static/.",
+  "scripts": {
+    "vendor": "node scripts/vendor-pdfjs.mjs"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "6.5.438"
+  }
+}

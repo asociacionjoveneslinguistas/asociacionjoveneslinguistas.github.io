@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <section class="sec sec--white" aria-label="{{ .Title }}">
+    <div class="wrap">
+      <ul class="founders">
+        {{- range sort hugo.Data.socios "orden" }}
+        <li class="founder">
+          <h2 class="founder__name">
+            {{- if .orcid -}}
+            <a href="https://orcid.org/{{ .orcid }}" rel="noopener"><span>{{ .nombre }}</span>{{ partial "icons/orcid.html" }}</a>
+            {{- else -}}
+            {{ .nombre }}
+            {{- end -}}
+          </h2>
+          {{- with .cargo }}
+          <p class="founder__pos">{{ . }}</p>
+          {{- end }}
+          {{- with .institucion }}
+          <p class="founder__inst">{{ . }}</p>
+          {{- end }}
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+{{ end }}

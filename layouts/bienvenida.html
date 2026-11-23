@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <section class="welcome welcome--inner">
+    <div class="wrap welcome__grid">
+      <div class="welcome__prose">
+        {{ .Content }}
+      </div>
+      <div class="welcome__aside">
+        <p class="welcome__call">{{ .Params.llamada }}</p>
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="{{ .Language.Lang }}" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} / {{ site.Title }}{{ end }}</title>
+<script>document.documentElement.className = "js";</script>
+<link rel="canonical" href="{{ .Permalink }}">
+{{- if gt (len .AllTranslations) 1 }}{{ range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end }}{{ end }}
+{{- with .Params.biodata }}
+<link rel="alternate" type="application/pdf" href="{{ . | relURL }}">
+{{- end }}
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+{{- if eq .Params.fuentes "spectral400" }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;800&amp;display=swap">
+{{- else }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@800&amp;display=swap">
+{{- end }}
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&amp;display=swap">
+{{- $css := slice }}
+{{- range slice "10-system" "20-inner" "30-junta" "40-inner-b" "50-site" }}{{ $css = $css | append (resources.Get (printf "css/%s.css" .)) }}{{ end }}
+{{- $css = $css | resources.Concat "css/sitio.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+</head>
+<body>
+{{ if .IsHome }}{{ partial "header-home.html" . }}{{ else }}{{ partial "header-band.html" . }}{{ end }}
+
+<main>
+{{ block "main" . }}{{ end }}
+</main>
+
+{{ partial "footer.html" . }}
+
+{{ partial "spotlight.html" . }}
+{{- $js := resources.Get "js/site.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ block "scripts" . }}{{ end }}
+</body>
+</html>

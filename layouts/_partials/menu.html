@@ -1,0 +1,19 @@
+{{- /* The full index (design.md: 15 entries, 10 sub-entries). Context: dict "page" "prefix" ("index" or "sitemap"). */ -}}
+{{- $p := .prefix -}}
+{{- $here := .page.RelPermalink -}}
+{{- range hugo.Data.menu.entradas }}
+  {{- $ext := hasPrefix .enlace "http" }}
+  {{- $href := cond $ext .enlace (relURL .enlace) }}
+  <li class="{{ $p }}__item"><a class="{{ $p }}__link" href="{{ $href }}"{{ if $ext }} rel="noopener"{{ end }}{{ if eq $href $here }} aria-current="page"{{ end }}>{{ .titulo }}{{ if $ext }}{{ partial "icons/ext.html" (printf "%s__ext" $p) }}{{ end }}</a>
+  {{- with .subpaginas }}
+    <ul class="{{ $p }}__sub">
+    {{- range . }}
+      {{- $sh := relURL .enlace }}
+      <li><a class="{{ $p }}__sublink" href="{{ $sh }}"{{ with .idioma }} lang="{{ . }}"{{ end }}{{ if eq $sh $here }} aria-current="page"{{ end }}>{{ .titulo }}</a></li>
+    {{- end }}
+    </ul>
+  </li>
+  {{- else -}}
+  </li>
+  {{- end }}
+{{- end }}

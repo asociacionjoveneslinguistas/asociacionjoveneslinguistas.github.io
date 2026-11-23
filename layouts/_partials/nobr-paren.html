@@ -1,0 +1,3 @@
+{{- /* A heading whose final parenthesis must not break: «Histórico de Juntas Directivas (desde 2023-2024)». */ -}}
+{{- $parts := split . " (" -}}
+{{- if gt (len $parts) 1 -}}{{ delimit (first (sub (len $parts) 1) $parts) " (" }} <span class="nobr">({{ index $parts (sub (len $parts) 1) }}</span>{{- else -}}{{ . }}{{- end -}}

@@ -1,0 +1,127 @@
+/* Junta Directiva (junta-1-years), member pages and Socios fundadores: mockups/inner/a */
+.members {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--space-xl);
+}
+.member {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2xs);
+  padding-block: var(--space-md) var(--space-lg);
+  border-top: var(--rule-hair) solid var(--color-hairline);
+}
+.member__role { color: var(--color-heading); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-head); }
+.member__name {
+  min-width: 0;
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  line-height: var(--leading-head);
+  letter-spacing: var(--tracking-head);
+  overflow-wrap: anywhere;
+}
+.member__uni { font-size: var(--text-sm); line-height: var(--leading-head); }
+.member__links { display: grid; justify-items: start; gap: var(--space-3xs); margin-top: var(--space-xs); }
+.year__title {
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: var(--leading-head);
+  letter-spacing: var(--tracking-head);
+  margin-bottom: var(--space-md);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.yearpanel {
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--gutter) var(--space-xl);
+  background: var(--color-panel);
+  --focus: var(--color-focus);
+}
+.yearpanel .year__title { margin-bottom: 0; }
+.panels { display: grid; gap: var(--space-md); }
+.sec--page > .wrap.panels-wrap { padding-inline: 0; }
+.sec--page > .wrap.panels-wrap > .sec__head { padding-inline: var(--gutter); }
+.panel__foot { padding-top: var(--space-sm); }
+.former { column-gap: var(--space-xl); margin-top: var(--space-xl); }
+.former li { padding-block: var(--space-2xs); border-top: var(--rule-hair) solid var(--color-hairline); break-inside: avoid; }
+
+/* Current members: the name opens the member page (founder-link pattern: Spectral 800, colour-shift hover) */
+.member__name a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit-fine);
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.member__name a:active { transform: translateY(1px); }
+
+/* Member page */
+.person { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+.person__facts { display: grid; align-content: start; justify-items: start; gap: var(--space-2xs); }
+.person__facts .member__role { font-size: var(--text-base); }
+.person__facts .member__uni { font-size: var(--text-base); }
+.person__facts .more--back { margin-bottom: var(--space-md); }
+
+/* Socios fundadores */
+.founders { column-gap: var(--space-2xl); }
+.founder {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block: var(--space-md) var(--space-lg);
+  border-top: var(--rule-hair) solid var(--color-hairline);
+  break-inside: avoid;
+}
+.founder__name {
+  min-width: 0;
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  line-height: var(--leading-head);
+  letter-spacing: var(--tracking-head);
+  overflow-wrap: anywhere;
+}
+.founder__name a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--hit-fine);
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.founder__name a:active { transform: translateY(1px); }
+.founder__pos, .founder__inst { max-width: var(--measure); }
+.founder__inst { font-style: italic; }
+@media (pointer: coarse) { .founder__name a, .member__name a { min-height: var(--hit); } }
+@media (hover: hover) and (pointer: fine) {
+  .founder__name a:hover, .member__name a:hover { color: var(--color-accent-2); }
+}
+@media (prefers-reduced-motion: reduce) { .founder__name a:active, .member__name a:active { transform: none; } }
+
+@media (min-width: 22.5rem) { .founder__name { font-size: var(--text-base); } }
+@media (min-width: 40rem) {
+  .founder__name { font-size: var(--text-lg); }
+  .members { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .former { columns: 2; }
+  .sec--page > .wrap.panels-wrap { padding-inline: var(--gutter); }
+  .sec--page > .wrap.panels-wrap > .sec__head { padding-inline: 0; }
+  .yearpanel { padding: var(--space-xl); border-radius: var(--radius-block); }
+}
+@media (min-width: 60rem) {
+  .members--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .former { columns: 3; }
+  .person { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--space-lg); }
+  .person__facts { grid-column: 1 / span 4; }
+  .person__bio { grid-column: 6 / span 7; }
+}
+@media (min-width: 75rem) {
+  .founders { columns: 2; }
+  .former { columns: 4; }
+}

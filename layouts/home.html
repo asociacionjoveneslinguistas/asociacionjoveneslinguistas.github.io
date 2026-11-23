@@ -1,0 +1,45 @@
+{{ define "main" }}
+  {{- $d := .Params.destacados }}
+  <section class="welcome" aria-labelledby="bienvenida">
+    <div class="wrap welcome__grid">
+      <h2 class="welcome__title" id="bienvenida">{{ .Title }}</h2>
+      <div class="welcome__prose">
+        {{ .Content }}
+      </div>
+      <div class="welcome__aside">
+        <p class="welcome__call">{{ .Params.llamada }}</p>
+        <p class="welcome__langs">
+          {{- range $i, $code := hugo.Data.idiomas.linea_bienvenida }}
+            {{- range where hugo.Data.idiomas.idiomas "codigo" $code }}{{ if $i }}<span aria-hidden="true">/</span>{{ end }}<a href="{{ .bienvenida | relURL }}" lang="{{ .codigo }}" hreflang="{{ .codigo }}">{{ .etiqueta }}</a>{{ end }}
+          {{- end -}}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="dest">
+    <div class="wrap dest__grid">
+      {{- with site.GetPage $d.congreso }}
+      <article class="block block--congress">
+        <h2 class="block__title">{{ partial "c3.html" (dict "text" .Title "href" .RelPermalink) }}</h2>
+        {{ .Content }}
+      </article>
+      {{- end }}
+      {{- with site.GetPage $d.socio.pagina }}
+      <article class="block block--join">
+        <h2 class="block__title">{{ partial "c3.html" (dict "text" .Title "href" .RelPermalink) }}</h2>
+        <p class="block__question">{{ $d.socio.texto }}</p>
+      </article>
+      {{- end }}
+      <div class="block block--calls">
+        {{- $calls := $d.convocatorias }}
+        <div class="calls__col">
+          {{- range first 2 $calls }}{{ partial "home-call.html" . }}{{ end }}
+        </div>
+        <div class="calls__col">
+          {{- range after 2 $calls }}{{ partial "home-call.html" . }}{{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

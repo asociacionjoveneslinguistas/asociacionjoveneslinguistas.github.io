@@ -1,0 +1,60 @@
+# «Menú» and the footer site map: 15 entries and 10 sub-entries (design.md). Links are site paths or external URLs.
+entradas:
+- titulo: La Asociación
+  enlace: /la-asociacion/
+  subpaginas:
+  - titulo: The Association (ENG)
+    enlace: /the-association-en/
+    idioma: en
+  - titulo: L’Associació (CAT)
+    enlace: /lassociacio/
+    idioma: ca
+  - titulo: A Asociación (GLG)
+    enlace: /a-asociacion-gal/
+    idioma: gl
+  - titulo: Elkartea (EUS)
+    enlace: /eus/
+    idioma: eu
+- titulo: Estatutos
+  enlace: /estatutos/
+- titulo: Junta Directiva
+  enlace: /junta-directiva/
+  subpaginas:
+  - titulo: Juntas anteriores
+    enlace: /junta-directiva/#historico
+- titulo: Socios fundadores
+  enlace: /socios-fundadores/
+- titulo: Ayudas económicas
+  enlace: /ayudas-economicas/
+- titulo: Congreso anual
+  enlace: /congresos-anteriores/
+  subpaginas:
+  - titulo: XLI Congreso Málaga 2027
+    enlace: /xxxiv-congreso-santiago-2024/
+- titulo: Sorteo AJL
+  enlace: /sorteo-ajl/
+- titulo: Premios AJL
+  enlace: /premios-ajl/
+- titulo: Seminarios AJL
+  enlace: /seminarios-ajl/
+  subpaginas:
+  - titulo: Ciclo 2024
+    enlace: /seminarios-formativos-ajl-ciclo-2024/
+  - titulo: Ciclo 2025
+    enlace: /seminarios-ajl/seminarios-formativos-ajl-ciclo-2025/
+  - titulo: Ciclo 2026
+    enlace: /seminarios-ajl/seminarios-formativos-ajl-ciclo-2026/
+  - titulo: Curso formativo 2026 – Estadística
+    enlace: /seminarios-ajl/curso-formativo-2026-estadistica-hablemos-de-regresion-lineal/
+- titulo: Convenio de colaboración AJL-SEL
+  enlace: /convenio-ajl-sel/
+- titulo: Publicaciones
+  enlace: /publicaciones/
+- titulo: Estudios Interlingüísticos
+  enlace: /estudios-interlinguisticos/
+- titulo: Red Nacional de Lingüística
+  enlace: https://redlingca.wordpress.com/
+- titulo: Hazte socio
+  enlace: /hazte-socio/
+- titulo: Contacto
+  enlace: /contacto/

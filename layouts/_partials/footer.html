@@ -1,0 +1,21 @@
+{{- /* Colophon: Ft1 below 40rem (mast-headed), Ft3 site map from 40rem (ab-v6). Context: the page. */ -}}
+{{- $s := hugo.Data.sitio -}}
+<footer class="colophon"{{ if ne .Language.Lang "es" }} lang="es"{{ end }}>
+  <div class="wrap colophon__v2">
+    <div class="colophon__brand">
+      <p class="colophon__wordmark">{{ $s.nombre }}</p>
+      <ul class="colophon__line">
+        {{- range $s.otros_nombres }}
+        <li lang="{{ .idioma }}">{{ .texto }}</li>
+        {{- end }}
+      </ul>
+    </div>
+    <ul class="sitemap__list">
+      {{- partial "menu.html" (dict "page" . "prefix" "sitemap") }}
+    </ul>
+    <div class="colophon__contact">
+      <address>{{ delimit $s.direccion "<br>" | safeHTML }}</address>
+      {{ partial "contact-links.html" . }}
+    </div>
+  </div>
+</footer>

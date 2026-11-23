@@ -1,0 +1,59 @@
+baseURL = "https://asociacionjoveneslinguistas.github.io/"
+title = "Asociación de Jóvenes Lingüistas"
+defaultContentLanguage = "es"
+defaultContentLanguageInSubdir = false
+disableDefaultLanguageRedirect = true
+disableKinds = ["taxonomy", "term", "rss"]
+enableRobotsTXT = true
+timeZone = "Europe/Madrid"
+
+[languages]
+  [languages.es]
+    weight = 1
+    label = "Español"
+  [languages.ca]
+    weight = 2
+    label = "Català"
+  [languages.gl]
+    weight = 3
+    label = "Galego"
+  [languages.eu]
+    weight = 4
+    label = "Euskara"
+  [languages.en]
+    weight = 5
+    label = "English"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      linkify = false
+      [markup.goldmark.extensions.typographer]
+        disable = true
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      [markup.goldmark.parser.attribute]
+        block = false
+
+[params]
+  pdfjs = "6.5.438"
+
+[minify]
+  [minify.tdewolff.html]
+    keepWhitespace = false
+    keepSpecialComments = false
+
+[build]
+  [build.buildStats]
+    enable = false
+
+[outputs]
+  home = ["html"]
+  section = ["html"]
+  page = ["html"]
+
+[sitemap]
+  changeFreq = ""
+  priority = -1

@@ -1,0 +1,6 @@
+{{- /* C3 typographic link: Spectral heading text with the drawn arrow, or the ↗ for an external site. Context: dict "text" "href" (and "external"). */ -}}
+{{- if .external -}}
+<a class="c3" href="{{ .href }}" rel="noopener"><span class="c3__text">{{ .text }}</span>{{ partial "icons/ext.html" "c3__ext" }}</a>
+{{- else -}}
+<a class="c3" href="{{ .href }}"><span class="c3__text">{{ .text }}</span>{{ partial "icons/arrow.html" "c3__arrow" }}</a>
+{{- end -}}

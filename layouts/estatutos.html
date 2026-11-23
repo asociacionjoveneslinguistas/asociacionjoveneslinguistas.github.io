@@ -1,0 +1,37 @@
+{{ define "main" }}
+  {{- $doc := .Params.documento }}
+  {{- $file := $doc.archivo | relURL }}
+  <section class="sec sec--white">
+    <div class="wrap">
+      <div class="prose">
+        {{ .Content }}
+      </div>
+      <h2 class="sec__head" id="doc-title">{{ $doc.titulo }}</h2>
+      <div class="reader" id="reader" data-src="{{ $file }}" data-lib="{{ "vendor/pdfjs-dist/pdf.min.mjs" | relURL }}?v={{ site.Params.pdfjs }}" data-worker="{{ "vendor/pdfjs-dist/pdf.worker.min.mjs" | relURL }}?v={{ site.Params.pdfjs }}">
+        <div class="reader__bar">
+          <div class="reader__group reader__group--pages">
+            <button class="rbtn" type="button" data-act="prev" aria-label="Página anterior" title="Página anterior"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5.5L8.5 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="reader__page"><label class="vh" for="reader-page">Página</label><input class="reader__input" id="reader-page" type="text" inputmode="numeric" autocomplete="off" value="1"><span>de <span class="reader__count"></span></span></div>
+            <button class="rbtn" type="button" data-act="next" aria-label="Página siguiente" title="Página siguiente"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5.5l6.5 6.5L9 18.5" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+          <div class="reader__group reader__group--view">
+            <button class="rbtn" type="button" data-act="zoom-out" aria-label="Reducir" title="Reducir"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="rbtn" type="button" data-act="zoom-in" aria-label="Ampliar" title="Ampliar"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="rbtn" type="button" data-act="fit" aria-label="Ajustar al ancho" title="Ajustar al ancho" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 12h17M7.5 8l-4 4 4 4M16.5 8l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <a class="rbtn" href="{{ $file }}" download aria-label="Descargar" title="Descargar">{{ partial "icons/download.html" "" }}</a>
+            <button class="rbtn" type="button" data-act="full" aria-label="Pantalla completa" title="Pantalla completa"><svg class="rbtn__enter" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="rbtn__exit" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <div class="reader__view" id="reader-view" tabindex="0" role="region" aria-label="{{ $doc.titulo }}">
+          <div class="reader__pages"></div>
+          <div class="reader__msg" id="reader-msg" role="status" hidden><p class="reader__msgtext"></p><a class="doclink" href="{{ $file }}">{{ partial "icons/download.html" "" }}<span>{{ $doc.titulo }}</span></a></div>
+          <p class="reader__msg reader__nojs"><a class="doclink" href="{{ $file }}">{{ partial "icons/download.html" "" }}<span>{{ $doc.titulo }}</span></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}
+{{ define "scripts" }}
+{{- $js := resources.Get "js/lector.js" | minify | fingerprint }}
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{ end }}

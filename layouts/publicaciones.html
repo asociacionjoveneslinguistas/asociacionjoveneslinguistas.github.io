@@ -1,0 +1,31 @@
+{{ define "main" }}
+  {{- /* data/publicaciones: newest year first; within a year, the field «orden». */ -}}
+  {{- $rows := slice }}
+  {{- range hugo.Data.publicaciones }}
+    {{- $rows = $rows | append (dict "k" (printf "%04d-%04d" (sub 9999 (int .anio)) (int .orden)) "p" .) }}
+  {{- end }}
+  <div class="sec sec--white pubs">
+    <div class="wrap">
+      <ul class="rows">
+        {{- range sort $rows "k" }}{{ $p := .p }}
+        <li class="row">
+          <div class="row__cover">
+            {{- with $p.portada }}
+            {{- $f := printf "static%s" . }}{{ $cfg := cond (fileExists $f) (images.Config $f) dict }}
+            <img class="cover" src="{{ . | relURL }}"{{ with $cfg }} width="{{ .Width }}" height="{{ .Height }}"{{ end }} alt="" loading="lazy" decoding="async">
+            {{- end }}
+          </div>
+          {{- $words := split $p.titulo " " }}
+          {{- $head := delimit (first (sub (len $words) 1) $words) " " }}
+          {{- $tail := index $words (sub (len $words) 1) }}
+          <p class="cite">{{ $p.editores }} {{ with $p.funcion }}({{ . }}) {{ end }}({{ $p.anio }}): {{ if $p.enlace -}}
+            <a href="{{ $p.enlace }}" rel="noopener"{{ with $p.idioma_titulo }} lang="{{ . }}"{{ end }}>{{ with $head }}{{ . }} {{ end }}<span class="nowrap">{{ $tail }}{{ partial "icons/ext.html" "ext" }}</span></a>
+            {{- else -}}
+            <em{{ with $p.idioma_titulo }} lang="{{ . }}"{{ end }}>{{ $p.titulo }}</em>
+            {{- end }}. {{ $p.editorial | $.RenderString }}</p>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+{{ end }}

@@ -1,0 +1,116 @@
+{{ define "main" }}
+  {{- /* Editions: data/congresos, one file per edition. The upcoming one has proximo: true. */ -}}
+  {{- $all := sort hugo.Data.congresos "edicion" }}
+  {{- $past := where $all "proximo" "!=" true }}
+  {{- $next := false }}{{ range first 1 (where $all "proximo" true) }}{{ $next = . }}{{ end }}
+  {{- $recent := first 5 (sort $past "edicion" "desc") }}
+  {{- $older := after 5 (sort $past "edicion" "desc") }}
+
+  {{- /* Map nodes: position from latitude and longitude (orthographic projection centred on 40° N, 3.5° W, fitted to the c-collegial plate) */ -}}
+  {{- $lat0 := math.ToRadians 40.0 }}{{ $lon0 := math.ToRadians -3.5 }}
+  {{- $pos := dict }}
+  {{- range hugo.Data.sedes.sedes }}
+    {{- $la := math.ToRadians (float .latitud) }}{{ $lo := math.ToRadians (float .longitud) }}
+    {{- $u := mul (math.Cos $la) (math.Sin (sub $lo $lon0)) }}
+    {{- $v := sub (mul (math.Cos $lat0) (math.Sin $la)) (mul (math.Sin $lat0) (math.Cos $la) (math.Cos (sub $lo $lon0))) }}
+    {{- $x := add (mul 521.1123 $u) (mul -0.0486 $v) 43.1504 }}
+    {{- $y := add (mul -0.0064 $u) (mul -704.5828 $v) 51.9684 }}
+    {{- $pos = merge $pos (dict .id (dict "x" $x "y" $y "s" .)) }}
+  {{- end }}
+
+  <div class="sec sec--white atlas">
+    <div class="wrap atlas__grid">
+      <figure class="map">
+        <div class="map__art" aria-hidden="true">
+          <svg class="map__svg" viewBox="0 0 1000 739.1" preserveAspectRatio="xMidYMid meet" focusable="false">
+            {{ partial "mapa-geo.html" . }}
+            <g class="route">
+            {{- $last := last 5 $all }}
+            {{- range $i, $e := $last }}{{ if $i }}
+              {{- $a := index $pos (index $last (sub $i 1)).sede }}{{ $b := index $pos $e.sede }}
+              {{- $x0 := mul $a.x 10 }}{{ $y0 := mul $a.y 7.391 }}{{ $x1 := mul $b.x 10 }}{{ $y1 := mul $b.y 7.391 }}
+              {{- $cx := sub (div (add $x0 $x1) 2) (mul 0.2 (sub $y1 $y0)) }}{{ $cy := add (div (add $y0 $y1) 2) (mul 0.2 (sub $x1 $x0)) }}
+              {{- with $e.trazado }}{{ $xy := split . " " }}{{ $cx = float (index $xy 0) }}{{ $cy = float (index $xy 1) }}{{ end }}
+              <path class="route__leg{{ if $e.proximo }} route__leg--next{{ end }}" pathLength="1" d="M{{ printf "%.1f %.1f" $x0 $y0 }}Q{{ printf "%.1f %.1f" $cx $cy }} {{ printf "%.1f %.1f" $x1 $y1 }}"/>
+            {{- end }}{{ end }}
+            </g>
+          </svg>
+          {{- range hugo.Data.sedes.sedes }}
+            {{- $id := .id }}
+            {{- $here := where $past "sede" $id }}
+            {{- if $here }}
+            {{- $p := index $pos $id }}
+            {{- $nums := slice }}{{ range $here }}{{ $nums = $nums | append .numero }}{{ end }}
+            {{- $cls := cond (eq .etiqueta "izquierda") "node--l" "node--r" }}
+            {{- range .ajustes }}{{ $cls = printf "%s %s" $cls (index (dict "fondo" "node--knock" "costa" "node--sea" "separada" "node--wide") .) }}{{ end }}
+          <span class="node {{ $cls }}" style="--x:{{ printf "%.3f" $p.x }}%;--y:{{ printf "%.3f" $p.y }}%"><span class="node__lbl">{{ delimit $nums " " }}</span></span>
+            {{- end }}
+          {{- end }}
+          {{- with $next }}{{ $p := index $pos .sede }}
+          <span class="next" style="--x:{{ printf "%.3f" $p.x }}%;--y:{{ printf "%.3f" $p.y }}%"><span class="next__ring"></span><span class="next__lbl">{{ .nombre }}</span></span>
+          {{- end }}
+        </div>
+        {{- $years := slice }}{{ range $all }}{{ $years = $years | append .anio }}{{ end }}
+        <figcaption class="map__cap">Sedes de las {{ len $all }} ediciones, de {{ index (sort $years) 0 }} a {{ index (sort $years "value" "desc") 0 }}. La línea une las cinco últimas{{ with $next }}; el tramo discontinuo lleva a {{ (index $pos .sede).s.ciudad }}, sede de {{ .anio }}{{ end }}.</figcaption>
+      </figure>
+      {{- with $next }}{{ with .pagina }}{{ with site.GetPage . }}
+      <article class="block block--congress">
+        <h2 class="block__title">{{ partial "c3.html" (dict "text" .Title "href" .RelPermalink) }}</h2>
+        {{ .Content }}
+      </article>
+      {{- end }}{{ end }}{{ end }}
+    </div>
+  </div>
+
+  <section class="sec sec--page recent" aria-labelledby="ultimos">
+    <div class="wrap sec__inner">
+      <h2 class="sec__title" id="ultimos">Últimos congresos</h2>
+      <div class="eds bleed">
+        {{- range $i, $e := $recent }}
+        {{- $cover := "" }}{{ with $e.portada }}{{ $cover = . }}{{ end }}
+        <article class="card ed{{ if $cover }} ed--cover{{ end }}{{ if eq $i 0 }} ed--lead{{ end }}">
+          <h3 class="ed__title">{{ if $e.web }}{{ partial "c3.html" (dict "text" $e.nombre "href" $e.web "external" true) }}{{ else }}{{ $e.nombre }}{{ end }}</h3>
+          {{- with $cover }}
+          {{- $f := printf "static%s" . }}{{ $cfg := cond (fileExists $f) (images.Config $f) dict }}
+          <img class="ed__cover" src="{{ . | relURL }}"{{ with $cfg }} width="{{ .Width }}" height="{{ .Height }}"{{ end }} alt="" loading="lazy" decoding="async">
+          {{- end }}
+          <div class="ed__meta">
+            <p class="ed__uni"{{ with $e.idioma }} lang="{{ . }}"{{ end }}>{{ $e.universidad | safeHTML }}</p>
+            <p class="ed__date">{{ $e.fechas }}</p>
+            {{- with $e.libro }}{{ $ext := hasPrefix . "http" }}
+            <a class="link ed__book" href="{{ cond $ext . (relURL .) }}"{{ if $ext }} rel="noopener"{{ end }}>Libro de resúmenes{{ if $ext }}{{ partial "icons/ext.html" "ext" }}{{ end }}</a>
+            {{- end }}
+          </div>
+        </article>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+
+  {{- with $older }}
+  <section class="sec sec--white older" aria-labelledby="anteriores">
+    <div class="wrap sec__inner">
+      <h2 class="sec__title" id="anteriores">Congresos anteriores</h2>
+      <ol class="chron" reversed start="{{ (index . 0).edicion }}">
+        {{- range . }}
+        <li class="chron__row"><span class="chron__ed">{{ if .web }}<a href="{{ .web }}" rel="noopener">{{ .nombre }}{{ partial "icons/ext.html" "ext" }}</a>{{ else }}{{ .nombre }}{{ end }}</span><span class="chron__uni"{{ with .idioma }} lang="{{ . }}"{{ end }}>{{ .universidad | safeHTML }}</span><span class="chron__date">{{ .fechas }}</span><span class="chron__book">{{ with .libro }}{{ $ext := hasPrefix . "http" }}<a class="link" href="{{ cond $ext . (relURL .) }}"{{ if $ext }} rel="noopener"{{ end }}>Libro de resúmenes{{ if $ext }}{{ partial "icons/ext.html" "ext" }}{{ end }}</a>{{ end }}</span></li>
+        {{- end }}
+      </ol>
+    </div>
+  </section>
+  {{- end }}
+
+  <section class="sec sec--page sede" aria-labelledby="sede">
+    <div class="wrap sec__inner sede__grid">
+      <h2 class="sec__title" id="sede">Candidaturas de sede</h2>
+      <div class="prose">
+        {{ .Content }}
+      </div>
+      <ul class="docs">
+        {{- range $i, $d := .Params.documentos }}
+        <li class="doc"><span class="doc__name" id="sede-doc-{{ add $i 1 }}">{{ $d.nombre | safeHTML }}</span><a class="doc__get" href="{{ $d.archivo | relURL }}" aria-describedby="sede-doc-{{ add $i 1 }}">Descarga</a></li>
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+{{ end }}

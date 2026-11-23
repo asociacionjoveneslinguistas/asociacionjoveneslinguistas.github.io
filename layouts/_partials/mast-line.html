@@ -1,0 +1,21 @@
+{{- /* The masthead line (language row, «Buscar …», «Menú») that docks as the floating pill, and the «Menú» panel. Context: the page. */ -}}
+<div class="dock-holder">
+  <div class="mast__line dock">
+    {{- if .IsHome }}
+    <div class="dock__brand" aria-hidden="true"><span class="dock__seal"><svg viewBox="0 0 2784 2859" aria-hidden="true" focusable="false"><use href="#ajl-seal"/></svg></span><span class="dock__name">{{ hugo.Data.sitio.nombre }}</span></div>
+    {{- else }}
+    <a class="dock__brand" href="{{ "/" | relURL }}" aria-label="{{ hugo.Data.sitio.nombre }}"><span class="dock__seal"><svg viewBox="0 0 2784 2859" aria-hidden="true" focusable="false"><use href="#ajl-seal"/></svg></span><span class="dock__name">{{ hugo.Data.sitio.nombre }}</span></a>
+    {{- end }}
+    <nav class="langs" aria-label="Idiomas">
+      {{ partial "langs.html" . }}
+    </nav>
+    <button class="searchpill" type="button" aria-haspopup="dialog" aria-controls="cmdk" aria-keyshortcuts="Meta+K Control+K">{{ partial "icons/magnifier.html" }}<span class="searchpill__text">Buscar …</span><span class="searchpill__kbd" aria-hidden="true"><kbd class="searchpill__mod">⌘</kbd><kbd>K</kbd></span></button>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="indice">Menú<svg class="menu-toggle__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="menu-toggle__down" d="M5.5 9l6.5 6.5L18.5 9" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/><path class="menu-toggle__up" d="M5.5 15.5L12 9l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.16" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
+<nav class="index" id="indice" aria-label="Menú">
+  <nav class="index__langs" aria-label="Idiomas">{{ partial "langs.html" . }}</nav>
+  <ul class="index__list">
+    {{- partial "menu.html" (dict "page" . "prefix" "index") }}
+  </ul>
+</nav>

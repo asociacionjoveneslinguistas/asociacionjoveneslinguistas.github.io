@@ -1,0 +1,20 @@
+{{- /* One board member. Context: dict "c" (the entry in data/juntas) "current" (bool) "level" (heading level). Values left empty in the entry come from the member page it names. */ -}}
+{{- $c := .c -}}
+{{- $m := cond (ne $c.miembro "") (site.GetPage (printf "/junta-directiva/%s" $c.miembro)) nil -}}
+{{- $cargo := $c.cargo }}{{ $nombre := $c.nombre }}{{ $uni := $c.universidad }}{{ $orcid := $c.orcid }}{{ $correo := "" -}}
+{{- with $m }}
+  {{- if not $cargo }}{{ $cargo = .Params.cargo }}{{ end }}
+  {{- if not $nombre }}{{ $nombre = .Title }}{{ end }}
+  {{- if not $uni }}{{ $uni = .Params.universidad }}{{ end }}
+  {{- if not $orcid }}{{ $orcid = .Params.orcid }}{{ end }}
+  {{- $correo = .Params.correo }}
+{{- end }}
+        <li class="member">
+          <p class="member__role">{{ $cargo }}</p>
+          <h{{ .level }} class="member__name">{{ if and .current $m }}<a href="{{ $m.RelPermalink }}">{{ $nombre }}</a>{{ else }}{{ $nombre }}{{ end }}</h{{ .level }}>
+          <p class="member__uni">{{ $uni | safeHTML }}</p>
+          {{- if or (and .current $correo) $orcid }}
+          <div class="member__links">{{ if and .current $correo }}{{ partial "contact-email.html" $correo }}{{ end }}{{ with $orcid }}{{ partial "contact-orcid.html" . }}{{ end }}</div>
+          {{- end }}
+        </li>
+{{- /**/ -}}

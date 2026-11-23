@@ -1,0 +1,15 @@
+{{- /* Images in Markdown. Local files get their intrinsic proportions so the page does not shift while they load.
+       A number as the image title («![](/ruta.png "244")») is the display width in pixels, as WordPress showed it. */ -}}
+{{- $src := .Destination -}}
+{{- $w := 0 -}}{{- $h := 0 -}}
+{{- if hasPrefix $src "/" -}}
+  {{- $f := printf "static%s" $src -}}
+  {{- if fileExists $f -}}{{- with images.Config $f -}}{{- $w = .Width -}}{{- $h = .Height -}}{{- end -}}{{- end -}}
+  {{- $src = relURL $src -}}
+{{- end -}}
+{{- if and $w (findRE `^\d+$` .Title) -}}
+  {{- $dw := int .Title -}}
+  {{- $h = int (math.Round (div (mul (float $dw) $h) $w)) -}}{{- $w = $dw -}}
+{{- end -}}
+<img src="{{ $src }}" alt="{{ .PlainText }}"{{ with $w }} width="{{ . }}" height="{{ $h }}"{{ end }} loading="lazy" decoding="async">
+{{- /**/ -}}

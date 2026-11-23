@@ -1,0 +1,314 @@
+/* Inner pages (mockups/inner/a, header 2 «band»): added on top of the ab-v6 system; every value is a token */
+:root {
+  --color-orcid: oklch(79.56% 0.1755 123.7);    /* #A6CE39, ORCID iD green: trademark exception, icon only */
+  --color-select: oklch(53.43% 0.0707 144.5 / 0.3); /* accent at 30 %, text selection in the PDF reader only */
+  --orcid-size: 24px;                            /* ORCID's recommended icon size */
+  --reader-h: clamp(26rem, 78svh, 60rem);
+  --z-reader: 300;
+}
+.nobr { white-space: nowrap; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+h3, figure { margin: 0; }
+
+/* Header 2: the sage band */
+.mast--band .mast__inner { min-height: 0; padding-block: var(--space-sm) 0; }
+.band__body {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-lg);
+  padding-block: var(--space-xl) var(--space-lg);
+}
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--hit);
+  border-radius: var(--space-3xs);
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: var(--tracking-head);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.home-link__seal { flex: none; width: var(--seal-size-dock); color: var(--color-seal); }
+.home-link__seal svg { width: 100%; height: auto; }
+.home-link:active { transform: translateY(1px); }
+@media (max-width: 22.49rem) { .home-link { font-size: var(--text-sm); } }
+.page-title {
+  min-width: 0;
+  max-width: 18ch;
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-call);
+  font-weight: 800;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  overflow-wrap: anywhere;
+}
+@media (min-width: 60rem) {
+  .band__body { padding-block: var(--space-2xl) var(--space-lg); }
+}
+
+/* Inner pages: the docked seal and name link to the home */
+a.dock__brand { color: var(--color-heading); text-decoration: none; border-radius: var(--radius-pill); }
+a.dock__brand:active { transform: translateY(1px); }
+
+/* Sections and prose */
+.sec { padding-block: var(--space-2xl) var(--space-3xl); }
+.sec--white { background: var(--color-panel); --focus: var(--color-focus); }
+.sec--page { background: var(--color-page); --focus: var(--color-focus); }
+.sec--intro { padding-block: var(--space-2xl) var(--space-lg); }
+.sec__head {
+  min-width: 0;
+  max-width: 18ch;
+  margin-bottom: var(--space-lg);
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: var(--leading-head);
+  letter-spacing: var(--tracking-head);
+  overflow-wrap: anywhere;
+}
+.prose { display: grid; gap: var(--space-md); max-width: var(--measure); }
+
+/* Contact-type links: email and ORCID (icon or mark beside the text; tint chip on hover) */
+.contact {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--hit-fine);
+  border-radius: var(--space-3xs);
+  color: var(--color-heading);
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.contact__ico { flex: none; width: var(--mark-size); height: var(--mark-size); }
+.contact:active { transform: translateY(1px); }
+.orcid { flex: none; width: var(--orcid-size); height: var(--orcid-size); }
+.orcid__disc { fill: var(--color-orcid); }
+.orcid__glyph { fill: var(--color-panel); }
+
+/* Document links (PDF), body-link type with a download glyph */
+.doclink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--hit-fine);
+  color: var(--color-accent);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.sec--page .doclink { color: var(--color-accent-2); }
+.doclink svg { flex: none; width: 1em; height: 1em; }
+.doclink[hidden] { display: none; }
+.doclink:active { transform: translateY(1px); }
+
+/* Typographic link with the drawn arrow at body size (back link) */
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--hit-fine);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-heading);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.more svg { flex: none; width: 0.875em; height: 0.875em; transition: transform var(--dur-micro) var(--ease-out); }
+.more:active { transform: translateY(1px); }
+
+@media (pointer: coarse) {
+  .contact, .doclink, .more { min-height: var(--hit); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .home-link:hover,
+  a.dock__brand:hover { background: var(--color-tint); box-shadow: 0 0 0 var(--space-2xs) var(--color-tint); }
+  .contact:hover { background: var(--color-tint); box-shadow: 0 0 0 var(--space-2xs) var(--color-tint); }
+  .doclink:hover { color: var(--color-heading); }
+  a.more:hover svg { transform: translateX(var(--space-2xs)); }
+  a.more.more--back:hover svg { transform: translateX(calc(-1 * var(--space-2xs))); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .more svg { transition: none; }
+  a.more:hover svg, a.more.more--back:hover svg,
+  .home-link:active, a.dock__brand:active,
+  .contact:active, .doclink:active, .more:active { transform: none; }
+}
+
+/* Estatutos: embedded PDF reader (pdfjs-dist, self-hosted) */
+.reader { display: grid; margin-inline: calc(-1 * var(--gutter)); }
+.prose + .sec__head { margin-top: var(--space-2xl); }
+.reader__bar {
+  --focus: var(--color-focus-on-band);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs) var(--space-md);
+  padding: var(--space-2xs) var(--gutter);
+  background: var(--color-band);
+  color: var(--color-heading);
+}
+.reader__group { display: flex; align-items: center; gap: var(--space-3xs); }
+.rbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--hit);
+  height: var(--hit);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-heading);
+  text-decoration: none;
+  cursor: pointer;
+}
+.rbtn svg { width: 1.25rem; height: 1.25rem; }
+.rbtn:active { transform: translateY(1px); }
+.rbtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.rbtn[aria-pressed="true"] { background: var(--color-panel); }
+.rbtn__exit, .is-full .rbtn__enter { display: none; }
+.is-full .rbtn__exit { display: inline; }
+.reader__page {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-inline: var(--space-2xs);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+.reader__input {
+  width: 3.25rem;
+  min-height: var(--hit);
+  padding: 0 var(--space-xs);
+  border: var(--rule-hair) solid var(--color-heading);
+  border-radius: var(--radius-pill);
+  background: var(--color-panel);
+  color: var(--color-heading);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+}
+.reader__view {
+  --focus: var(--color-focus);
+  position: relative;
+  height: var(--reader-h);
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--color-page);
+}
+.reader__pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  width: max-content;
+  min-width: 100%;
+  padding: var(--space-md);
+}
+.reader__sheet {
+  position: relative;
+  flex: none;
+  background: var(--color-panel);
+  outline: var(--rule-hair) solid var(--color-tint);
+}
+.reader__sheet canvas { display: block; width: 100%; height: 100%; }
+.reader__msg {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-sm);
+  max-width: var(--measure);
+  padding: var(--space-xl) var(--gutter);
+}
+.reader__msg[hidden] { display: none; }
+.reader__view .doclink { color: var(--color-accent-2); }
+.reader__input:disabled { opacity: 0.5; cursor: not-allowed; }
+.js .reader__nojs { display: none; }
+.reader:fullscreen { width: 100%; height: 100%; margin: 0; grid-template-rows: auto minmax(0, 1fr); background: var(--color-panel); }
+.reader:fullscreen .reader__view { height: auto; }
+.reader.is-expanded {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-reader);
+  margin: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: var(--color-panel);
+}
+.reader.is-expanded .reader__view { height: auto; }
+@media (hover: hover) and (pointer: fine) {
+  .rbtn:not(:disabled):not([aria-pressed="true"]):hover { background: var(--color-tint); }
+}
+@media (min-width: 40rem) {
+  .reader { margin-inline: 0; }
+  .reader__bar { padding-inline: var(--space-xs); border-radius: var(--radius-block) var(--radius-block) 0 0; }
+  .reader__group--view { margin-inline-start: auto; }
+  .reader__view { border-radius: 0 0 var(--radius-block) var(--radius-block); }
+  .reader:fullscreen .reader__bar, .reader.is-expanded .reader__bar,
+  .reader:fullscreen .reader__view, .reader.is-expanded .reader__view { border-radius: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .rbtn:active { transform: none; } }
+
+/* PDF.js text layer: the rules from pdfjs-dist 6.5.438 web/pdf_viewer.css that the layer needs */
+.textLayer {
+  position: absolute;
+  text-align: initial;
+  inset: 0;
+  overflow: clip;
+  opacity: 1;
+  line-height: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  caret-color: CanvasText;
+  z-index: 0;
+  --min-font-size: 1;
+  --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size));
+  --min-font-size-inv: calc(1 / var(--min-font-size));
+}
+.textLayer :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+  user-select: text;
+}
+.textLayer > :not(.markedContent),
+.textLayer .markedContent span:not(.markedContent) {
+  z-index: 1;
+  --font-height: 0;
+  font-size: calc(var(--text-scale-factor) * var(--font-height));
+  --scale-x: 1;
+  --rotate: 0deg;
+  transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv));
+}
+.textLayer .markedContent { display: contents; }
+.textLayer ::selection { background: var(--color-select); color: transparent; }
+.textLayer br::selection { background: transparent; }
+.textLayer .endOfContent { display: block; position: absolute; inset: 100% 0 0; z-index: 0; cursor: default; user-select: none; }

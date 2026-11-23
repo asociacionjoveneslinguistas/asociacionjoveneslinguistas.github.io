@@ -1,0 +1,20 @@
+{{- /* Home: the N6 poster masthead (ab-v6). */ -}}
+<header class="mast">
+  <div class="wrap mast__inner">
+    {{ partial "mast-line.html" . }}
+    <div class="mast__body">
+      <h1 class="mast__name"><span>Asociación</span> <span>de Jóvenes</span> <span>Lingüistas</span></h1>
+      <div class="mast__seal" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 2784 2859" preserveAspectRatio="xMidYMid meet">
+{{ partial "seal-g.html" . }}
+</svg>
+      </div>
+      <ul class="mast__names">
+        {{- range hugo.Data.sitio.otros_nombres }}
+        <li lang="{{ .idioma }}">{{ .texto }}</li>
+        {{- end }}
+      </ul>
+    </div>
+    <div class="mast__rule" aria-hidden="true"></div>
+  </div>
+</header>

@@ -1,0 +1,25 @@
+# Name, address and contact: the footer of every page and the Contacto page.
+nombre: Asociación de Jóvenes Lingüistas
+otros_nombres:
+- texto: Associació de Joves Lingüistes
+  idioma: ca
+- texto: Hizkuntzalari Gazteen Elkartea
+  idioma: eu
+- texto: The Association of Young Linguists
+  idioma: en
+direccion:
+- Departamento de Lengua Española, Lingüística y Teoría de la Literatura
+- Facultad de Filología. Universidad de Sevilla
+- Calle Palos de la Frontera, 41004, Sevilla, España
+correo:
+  etiqueta: 'CORREO ELECTRÓNICO:'
+  texto: asociacionjoveneslinguistas@gmail.com
+  enlace: mailto:asociacionjoveneslinguistas@gmail.com
+instagram:
+  etiqueta: 'INSTAGRAM:'
+  texto: '@ajl_info'
+  enlace: https://www.instagram.com/ajl_info/
+x:
+  etiqueta: 'TWITTER / X:'
+  texto: '@ajl_info'
+  enlace: https://x.com/ajl_info

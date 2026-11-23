@@ -1,0 +1,22 @@
+# The header language row (ES / CAT / GLG / EUS / ENG) and the home page line ENG / CAT / GLG / EUS.
+idiomas:
+- codigo: es
+  etiqueta: ES
+  bienvenida: /
+- codigo: ca
+  etiqueta: CAT
+  bienvenida: /benvinguts-a-la-web-de-lajl/
+- codigo: gl
+  etiqueta: GLG
+  bienvenida: /damosvos-a-benvida-a-web-da-ajl/
+- codigo: eu
+  etiqueta: EUS
+  bienvenida: /ongi-etorri-ajlren-webgunera/
+- codigo: en
+  etiqueta: ENG
+  bienvenida: /welcome-to-the-ajl-web-page/
+linea_bienvenida:
+- en
+- ca
+- gl
+- eu

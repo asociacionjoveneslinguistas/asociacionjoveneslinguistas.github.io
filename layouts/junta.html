@@ -1,0 +1,46 @@
+{{ define "main" }}
+  {{- $juntas := sort hugo.Data.juntas "curso" "desc" }}
+  {{- $actual := index $juntas 0 }}
+  <section class="sec sec--white" aria-labelledby="curso-actual">
+    <div class="wrap">
+      <h2 class="year__title" id="curso-actual">{{ $actual.curso }}</h2>
+      <ul class="members members--3">
+        {{- range $actual.cargos }}
+        {{ partial "junta-member.html" (dict "c" . "current" true "level" 3) }}
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+  {{- with after 1 $juntas }}
+  <section class="sec sec--page" aria-labelledby="historico">
+    <div class="wrap panels-wrap">
+      <h2 class="sec__head" id="historico">{{ partial "nobr-paren.html" $.Params.historico.titulo }}</h2>
+      <div class="panels">
+        {{- range . }}
+        {{- $id := printf "curso-%s" .curso }}
+        <article class="yearpanel" aria-labelledby="{{ $id }}">
+          <h3 class="year__title" id="{{ $id }}">{{ .curso }}</h3>
+          <ul class="members members--3">
+            {{- range .cargos }}
+            {{ partial "junta-member.html" (dict "c" . "current" false "level" 4) }}
+            {{- end }}
+          </ul>
+          {{- with .documento }}{{ if .archivo }}
+          <p class="panel__foot"><a class="doclink" href="{{ .archivo | relURL }}">{{ partial "icons/download.html" "" }}<span>{{ .titulo }}</span></a></p>
+          {{- end }}{{ end }}
+        </article>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+  {{- end }}
+  {{- with .Params.antiguos }}
+  <section class="sec sec--white" aria-labelledby="miembros">
+    <div class="wrap">
+      <h2 class="sec__head" id="miembros">{{ partial "nobr-paren.html" .titulo }}</h2>
+      <div class="prose"><p>{{ .texto }}</p></div>
+      <ul class="former">{{ range .nombres }}<li>{{ . }}</li>{{ end }}</ul>
+    </div>
+  </section>
+  {{- end }}
+{{ end }}

@@ -1,0 +1,8 @@
+{{- /* Language row: ES / CAT / GLG / EUS / ENG, each to its language's welcome page; the page's language is current. Context: the page. */ -}}
+{{- $cur := .Language.Lang -}}
+<ul class="langs__list">
+{{- range $i, $l := hugo.Data.idiomas.idiomas }}
+  <li>{{ if $i }}<span class="langs__sep" aria-hidden="true">/</span>{{ end }}<a class="langs__link" href="{{ $l.bienvenida | relURL }}" lang="{{ $l.codigo }}" hreflang="{{ $l.codigo }}"{{ if eq $l.codigo $cur }} aria-current="true"{{ end }}>{{ $l.etiqueta }}</a></li>
+{{- end }}
+</ul>
+{{- /**/ -}}

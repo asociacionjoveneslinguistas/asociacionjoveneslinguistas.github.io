@@ -1,0 +1,8 @@
+{{- /* Email, Instagram and X rows with their icons (design.md footer contact rows). */ -}}
+{{- $s := hugo.Data.sitio -}}
+<ul class="colophon__reach">
+  <li><a href="{{ $s.correo.enlace }}">{{ partial "icons/envelope-mark.html" "colophon__mark" }}<span>{{ $s.correo.texto }}</span></a></li>
+  <li><a href="{{ $s.instagram.enlace }}" rel="noopener">{{ partial "icons/instagram.html" "colophon__mark" }}<span>{{ $s.instagram.texto }}</span></a></li>
+  <li><a href="{{ $s.x.enlace }}" rel="noopener">{{ partial "icons/x.html" "colophon__mark" }}<span>{{ $s.x.texto }}</span></a></li>
+</ul>
+{{- /**/ -}}

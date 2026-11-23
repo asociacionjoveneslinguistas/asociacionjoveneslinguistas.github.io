@@ -1,0 +1,8 @@
+{{- with site.GetPage .pagina }}
+          <article class="call">
+            <h2 class="block__title">{{ partial "c3.html" (dict "text" .Title "href" .RelPermalink) }}</h2>
+            {{- with $.texto }}
+            <p>{{ . }}</p>
+            {{- end }}
+          </article>
+{{- end }}
