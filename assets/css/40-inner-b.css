@@ -296,9 +296,9 @@ figure { margin: 0; }
   .sede__grid .docs { grid-column: 8 / span 5; }
 }
 @media (min-width: 75rem) {
-  .atlas__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--space-lg); align-items: end; }
-  .map { grid-column: 1 / span 7; }
-  .atlas .block--congress { grid-column: 8 / span 5; align-self: end; }
+  .atlas__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto auto; column-gap: var(--space-lg); row-gap: var(--space-md); }
+  .map { grid-column: 1 / span 7; grid-row: 1 / span 2; grid-template-rows: subgrid; }
+  .atlas .block--congress { grid-column: 8 / span 5; grid-row: 1; align-self: stretch; align-content: space-between; }
   .eds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ed--lead { grid-column: 1 / -1; }
 }

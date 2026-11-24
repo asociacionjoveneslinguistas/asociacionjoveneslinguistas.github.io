@@ -66,3 +66,25 @@ h4 { margin: 0; }
   .contacto__dir { grid-column: 1 / span 5; }
   .contacto__list { grid-column: 7 / span 6; align-content: start; }
 }
+
+/* Documento layout (Estatutos, Convenio AJL-SEL): after the reader, the document named in text with «Descarga» beside it, no rules; then the logos, centred */
+.doc--plain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-lg);
+  margin-top: var(--space-lg);
+  padding: 0;
+  border: 0;
+}
+.doc--plain:last-child { border: 0; }
+.doc--plain strong { font-weight: 600; }
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xl) var(--space-2xl);
+  margin-top: var(--space-2xl);
+}
+.logos img { display: block; max-width: 100%; height: auto; }

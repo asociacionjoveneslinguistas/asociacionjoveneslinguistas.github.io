@@ -82,7 +82,7 @@
   --hit: 2.75rem;
   --hit-fine: 2rem;
   --seal-size: clamp(11rem, 46vw, 14rem);
-  --seal-size-wide: clamp(10rem, 45vw - 13.5rem, 30rem);
+  --seal-size-wide: clamp(10rem, 2.5rem + 27vw, 30rem);
   --seal-size-dock: 2.25rem;
   --radius-dock: 1.25rem;
   --z-dropdown: 100;
@@ -599,15 +599,16 @@ svg { display: block; }
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "name seal" "names names";
     align-items: center;
-    column-gap: var(--space-2xl);
+    column-gap: var(--space-xl);
     row-gap: var(--space-xl);
   }
   .mast__seal { width: var(--seal-size-wide); }
+  .mast__inner { min-height: clamp(34rem, min(88svh, 45vw + 14rem), 60rem); }
 }
 
 @media (min-width: 60rem) {
   .index__list { columns: 3; }
-  .mast__body { padding-block: var(--space-2xl) var(--space-lg); }
+  .mast__body { padding-block: var(--space-2xl) var(--space-lg); column-gap: var(--space-2xl); }
   .mast__names {
     flex-direction: row;
     flex-wrap: wrap;

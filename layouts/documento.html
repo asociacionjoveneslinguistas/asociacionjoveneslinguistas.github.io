@@ -28,6 +28,20 @@
           <p class="reader__msg reader__nojs"><a class="doclink" href="{{ $file }}">{{ partial "icons/download.html" "" }}<span>{{ $doc.titulo }}</span></a></p>
         </div>
       </div>
+      {{- with $doc.enlace }}
+      <p class="doc doc--plain"><span class="doc__name" id="doc-enlace">{{ . | $.RenderString }}</span><a class="doc__get" href="{{ $file }}" aria-describedby="doc-enlace">Descarga</a></p>
+      {{- end }}
+      {{- with $.Params.logos }}
+      <div class="logos">
+        {{- range . }}
+        {{- $w := int .ancho }}{{ $h := 0 }}
+        {{- $f := printf "static%s" .imagen }}
+        {{- if fileExists $f }}{{ with images.Config $f }}{{ $h = int (math.Round (div (mul (float $w) .Height) .Width)) }}{{ end }}{{ end }}
+        {{- $img := printf `<img src="%s" alt="" width="%d" height="%d" loading="lazy" decoding="async">` (.imagen | relURL) $w $h }}
+        {{- $img | safeHTML }}
+        {{- end }}
+      </div>
+      {{- end }}
     </div>
   </section>
 {{ end }}

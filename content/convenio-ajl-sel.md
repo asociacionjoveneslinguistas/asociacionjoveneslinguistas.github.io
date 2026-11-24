@@ -4,6 +4,12 @@ layout: documento
 documento:
   titulo: Convenio AJL-SEL
   archivo: /wp-content/uploads/2025/02/ajl-sel-convenio-firmado.pdf
+  enlace: '**Consulta el texto completo del convenio AJL-SEL aquí**'
+logos:
+- imagen: /wp-content/uploads/2025/02/logo-sel-vector-1-edited-1.png
+  ancho: 244
+- imagen: /wp-content/uploads/2024/11/whatsapp-image-2024-11-24-at-15.43.51.jpeg
+  ancho: 246
 ---
 Desde 2025, la Asociación de Jóvenes Lingüistas (AJL) y la Sociedad Española de Lingüística (SEL) cuentan con un convenio de colaboración para favorecer la interacción entre sus asociados y para promover el apoyo mutuo en actividades académicas y científicas.
 
@@ -14,8 +20,3 @@ Algunos de los puntos más interesantes para los socios de la AJL son:
 - **Reducción de la cuota de socio de la SEL** para miembros de la AJL
 
 - Quienes hayan sido socios de la AJL, al finalizar su vinculación con esta asociación, podrán asociarse a la SEL con **cuota de estudiante durante tres años sucesivos**, como máximo
-
-[**Consulta el texto completo del convenio AJL-SEL aquí**](/wp-content/uploads/2025/02/ajl-sel-convenio-firmado.pdf "Descarga")
-
-[![](/wp-content/uploads/2025/02/logo-sel-vector-1-edited-1.png "244")](/wp-content/uploads/2025/02/logo-sel-vector-1.png)
-![](/wp-content/uploads/2024/11/whatsapp-image-2024-11-24-at-15.43.51.jpeg "246")

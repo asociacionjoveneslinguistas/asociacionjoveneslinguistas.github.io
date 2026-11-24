@@ -221,6 +221,22 @@ content:
             options:
               media: archivos
               extensions: [pdf]
+          - name: enlace
+            label: Frase junto a «Descarga», bajo el lector
+            type: string
+      - name: logos
+        label: Logotipos (centrados, al final)
+        type: object
+        list: true
+        fields:
+          - name: imagen
+            label: Imagen
+            type: image
+            options:
+              media: imagenes
+          - name: ancho
+            label: Ancho en píxeles
+            type: number
       - name: layout
         type: string
         hidden: true
