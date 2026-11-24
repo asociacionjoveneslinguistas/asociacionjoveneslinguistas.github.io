@@ -1,4 +1,4 @@
-/* Junta Directiva (junta-1-years), member pages and Socios fundadores: mockups/inner/a */
+/* Junta Directiva (junta-2-selector, chosen 24 Nov 2026 over junta-1-years), member pages and Socios fundadores: mockups/inner/a */
 .members {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -24,6 +24,12 @@
 }
 .member__uni { font-size: var(--text-sm); line-height: var(--leading-head); }
 .member__links { display: grid; justify-items: start; gap: var(--space-3xs); margin-top: var(--space-xs); }
+.contact--hueco { visibility: hidden; }
+/* Cards in one grid row share their rows (portrait, role, name, university, links), so emails and iDs line up */
+@supports (grid-template-rows: subgrid) {
+  .members .member { grid-row: span 4; grid-template-rows: subgrid; }
+  .members--retratos .member { grid-row: span 5; }
+}
 .year__title {
   color: var(--color-heading);
   font-family: var(--font-display);
@@ -45,8 +51,57 @@
 .yearpanel .year__title { margin-bottom: 0; }
 .panels { display: grid; gap: var(--space-md); }
 .sec--page > .wrap.panels-wrap { padding-inline: 0; }
-.sec--page > .wrap.panels-wrap > .sec__head { padding-inline: var(--gutter); }
+.panels-wrap .sec__head { padding-inline: var(--gutter); }
 .panel__foot { padding-top: var(--space-sm); }
+
+/* Year selector (junta-2-selector): tabs styled like the language row; without JavaScript every board shows */
+.years__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-inline-start: calc(var(--gutter) - var(--space-sm));
+  margin-bottom: var(--space-lg);
+}
+.years__sep { color: var(--color-heading); font-size: var(--text-sm); line-height: 1; }
+.tab {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit);
+  padding: 0 var(--space-sm);
+  border: 0;
+  background: none;
+  color: var(--color-heading);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tab::before { content: ""; position: absolute; inset: var(--space-xs) 0; z-index: -1; border-radius: var(--radius-pill); }
+.tab[aria-selected="true"] { font-weight: 600; }
+.tab[aria-selected="true"]::before { background: var(--color-panel); }
+.tab:focus-visible { outline-offset: 0; }
+.tab:active { transform: translateY(1px); }
+.curso[hidden] { display: none; }
+.curso:focus-visible { outline-offset: var(--space-xs); }
+.js .yearpanel .year__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+html:not(.js) .years__tabs { display: none; }
+html:not(.js) .curso[hidden] { display: block; }
+html:not(.js) .curso--pasado ~ .curso--pasado .curso__hist { display: none; }
+
+/* Portrait on the current board's cards (chosen 24 Nov 2026) */
+.member__portrait {
+  width: 5rem;
+  height: auto;
+  aspect-ratio: 1;
+  margin-bottom: var(--space-xs);
+  border-radius: var(--radius-pill);
+  object-fit: cover;
+}
 .former { column-gap: var(--space-xl); margin-top: var(--space-xl); }
 .former li { padding-block: var(--space-2xs); border-top: var(--rule-hair) solid var(--color-hairline); break-inside: avoid; }
 
@@ -102,8 +157,9 @@
 @media (pointer: coarse) { .founder__name a, .member__name a { min-height: var(--hit); } }
 @media (hover: hover) and (pointer: fine) {
   .founder__name a:hover, .member__name a:hover { color: var(--color-accent-2); }
+  .tab:not([aria-selected="true"]):hover::before { background: var(--color-tint); }
 }
-@media (prefers-reduced-motion: reduce) { .founder__name a:active, .member__name a:active { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .founder__name a:active, .member__name a:active, .tab:active { transform: none; } }
 
 @media (min-width: 22.5rem) { .founder__name { font-size: var(--text-base); } }
 @media (min-width: 40rem) {
@@ -111,8 +167,9 @@
   .members { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .former { columns: 2; }
   .sec--page > .wrap.panels-wrap { padding-inline: var(--gutter); }
-  .sec--page > .wrap.panels-wrap > .sec__head { padding-inline: 0; }
+  .panels-wrap .sec__head { padding-inline: 0; }
   .yearpanel { padding: var(--space-xl); border-radius: var(--radius-block); }
+  .years__tabs { margin-inline-start: calc(-1 * var(--space-sm)); }
 }
 @media (min-width: 60rem) {
   .members--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }

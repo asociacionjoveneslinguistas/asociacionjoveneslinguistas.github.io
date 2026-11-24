@@ -7,34 +7,41 @@ cargos:
   cargo: Presidente
   nombre: David Navarro Ciurana
   universidad: Universidad Nacional de Educación a Distancia
+  correo: david.navarro@flog.uned.es
   orcid: 0000-0002-8977-7822
 - miembro: ''
   cargo: Secretaria
   nombre: Olga Popova
   universidad: Universidad de Cádiz
+  correo: olga.popova@uca.es
   orcid: 0000-0001-7084-3140
 - miembro: ''
   cargo: Tesorera
   nombre: Noelia de la Torre Martínez
   universidad: <span lang="ca">Universitat de València</span>
+  correo: ''
   orcid: 0000-0001-6328-0159
 - miembro: ''
   cargo: Vocal | Vicesecretaria
   nombre: Irene Martín del Barrio
   universidad: Universidad de Sevilla
+  correo: imdelbarrio@us.es
   orcid: 0000-0002-8269-3052
-- miembro: ''
-  cargo: Vocal | Redes sociales y contenido web
-  nombre: Laura Mateos Candelario
-  universidad: Universidad Autónoma de Madrid
-  orcid: 0000-0002-5510-0557
 - miembro: ''
   cargo: Vocal | Maquetación
   nombre: Edurne Garde Eransus
   universidad: Universidad de Navarra
+  correo: egardee@unav.es
   orcid: 0000-0001-8993-8211
 - miembro: ''
   cargo: Vocal | Maquetación
   nombre: Marta Sánchez López
   universidad: Universidad del País Vasco / <span lang="eu">Euskal Herriko Unibertsitatea</span>
+  correo: marta.sanchezl@ehu.eus
   orcid: 0000-0002-5373-1558
+- miembro: ''
+  cargo: Vocal | Redes sociales y contenido web
+  nombre: Laura Mateos Candelario
+  universidad: Universidad Autónoma de Madrid
+  correo: laura.mateos@uam.es
+  orcid: 0000-0002-5510-0557

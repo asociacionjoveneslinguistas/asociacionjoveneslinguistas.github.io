@@ -2,13 +2,13 @@
 title: Diego Gibanel Faro
 slug: diego-gibanel-faro
 layout: miembro
-cargo: Vocal
+cargo: Vocal | Redes sociales y contenido web
 universidad: Universidad de Alcalá
 correo: diego.gibanel@uah.es
 orcid: 0009-0001-9924-3381
 retrato: /imagenes/junta/diego-gibanel-faro.jpg
 biodata: /wp-content/uploads/2025/12/biodata_diego_2526.pdf
-orden: 6
+orden: 7
 ---
 Diego Gibanel Faro (Alcalá de Henares, 2001) es Graduado en Estudios Hispánicos por la Universidad de Alcalá (2019-2023), y Máster en Estudios Clásicos por la Universidad de Alcalá, Autónoma de Madrid y Complutense de Madrid (2023-24), ambas titulaciones con premio extraordinario. Desde 2024, es contratado predoctoral FPU (FPU23/02882) en la Universidad de Alcalá, donde cursa el programa de doctorado en Estudios Lingüísticos, Literarios y Teatrales.
 

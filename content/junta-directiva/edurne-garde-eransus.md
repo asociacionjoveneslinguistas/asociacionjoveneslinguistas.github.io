@@ -2,7 +2,7 @@
 title: Edurne Garde Eransus
 slug: edurne-garde-eransus
 layout: miembro
-cargo: Vocal
+cargo: Vocal | Vicesecretaria
 universidad: Universidad de Navarra
 correo: egardee@unav.es
 orcid: 0000-0001-8993-8211

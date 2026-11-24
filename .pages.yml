@@ -509,6 +509,9 @@ content:
           - name: universidad
             label: Universidad
             type: string
+          - name: correo
+            label: Correo electrónico
+            type: string
           - name: orcid
             label: ORCID iD
             type: string

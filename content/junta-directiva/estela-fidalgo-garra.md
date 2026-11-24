@@ -2,7 +2,7 @@
 title: Estela Fidalgo Garra
 slug: estela-fidalgo-garra
 layout: miembro
-cargo: Vocal
+cargo: Vocal | Maquetación
 universidad: Universidade de Santiago de Compostela
 correo: estela.fidalgo.garra@usc.gal
 orcid: 0000-0001-9332-5901

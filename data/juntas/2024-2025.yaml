@@ -7,34 +7,41 @@ cargos:
   cargo: Presidenta
   nombre: Olga Popova
   universidad: Universidad de Cádiz
+  correo: olga.popova@uca.es
   orcid: 0000-0001-7084-3140
 - miembro: ''
   cargo: Secretaria
   nombre: Laura Mateos Candelario
   universidad: Universidad Autónoma de Madrid
+  correo: laura.mateos@uam.es
   orcid: 0000-0002-5510-0557
 - miembro: ''
   cargo: Tesorera
   nombre: Irene Martín del Barrio
   universidad: Universidad de Sevilla
+  correo: imdelbarrio@us.es
   orcid: 0000-0002-8269-3052
 - miembro: ''
   cargo: Vocal | Vicesecretaria
   nombre: Edurne Garde Eransus
   universidad: Universidad de Navarra
+  correo: egardee@unav.es
   orcid: 0000-0001-8993-8211
-- miembro: ''
-  cargo: Vocal | Redes sociales y contenido web
-  nombre: Marta Sánchez López
-  universidad: Universidad del País Vasco / <span lang="eu">Euskal Herriko Unibertsitatea</span>
-  orcid: 0000-0002-5373-1558
 - miembro: ''
   cargo: Vocal | Maquetación
   nombre: Estela Fidalgo Garra
   universidad: Universidade de Santiago de Compostela
+  correo: estela.fidalgo.garra@usc.gal
   orcid: 0000-0001-9332-5901
 - miembro: ''
   cargo: Vocal | Maquetación
   nombre: Diego Gibanel Faro
   universidad: Universidad de Alcalá
+  correo: diego.gibanel@uah.es
   orcid: 0009-0001-9924-3381
+- miembro: ''
+  cargo: Vocal | Redes sociales y contenido web
+  nombre: Marta Sánchez López
+  universidad: Universidad del País Vasco / <span lang="eu">Euskal Herriko Unibertsitatea</span>
+  correo: marta.sanchezl@ehu.eus
+  orcid: 0000-0002-5373-1558

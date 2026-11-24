@@ -1,39 +1,39 @@
 {{ define "main" }}
   {{- $juntas := sort hugo.Data.juntas "curso" "desc" }}
-  {{- $actual := index $juntas 0 }}
-  <section class="sec sec--white" aria-labelledby="curso-actual">
-    <div class="wrap">
-      <h2 class="year__title" id="curso-actual">{{ $actual.curso }}</h2>
-      <ul class="members members--3">
-        {{- range $actual.cargos }}
-        {{ partial "junta-member.html" (dict "c" . "current" true "level" 3) }}
-        {{- end }}
-      </ul>
-    </div>
-  </section>
-  {{- with after 1 $juntas }}
-  <section class="sec sec--page" aria-labelledby="historico">
+  <section class="sec sec--page" aria-label="{{ .Title }}">
     <div class="wrap panels-wrap">
-      <h2 class="sec__head" id="historico">{{ partial "nobr-paren.html" $.Params.historico.titulo }}</h2>
+      <div class="years__tabs" role="tablist" aria-label="Juntas Directivas por curso">
+        {{- range $i, $j := $juntas }}
+        {{- if $i }}<span class="years__sep" aria-hidden="true">/</span>{{ end -}}
+        <button class="tab" type="button" role="tab" id="tab-{{ $j.curso }}" aria-controls="curso-{{ $j.curso }}" aria-selected="{{ cond (eq $i 0) "true" "false" }}" tabindex="{{ cond (eq $i 0) "0" "-1" }}">{{ $j.curso }}</button>
+        {{- end -}}
+      </div>
       <div class="panels">
-        {{- range . }}
-        {{- $id := printf "curso-%s" .curso }}
-        <article class="yearpanel" aria-labelledby="{{ $id }}">
-          <h3 class="year__title" id="{{ $id }}">{{ .curso }}</h3>
-          <ul class="members members--3">
-            {{- range .cargos }}
-            {{ partial "junta-member.html" (dict "c" . "current" false "level" 4) }}
+        {{- range $i, $j := $juntas }}
+        <article class="curso{{ if $i }} curso--pasado{{ end }}" role="tabpanel" id="curso-{{ $j.curso }}" aria-labelledby="tab-{{ $j.curso }}" tabindex="0"{{ if $i }} hidden{{ end }}>
+          {{- if $i }}
+          <h2 class="sec__head curso__hist"{{ if eq $i 1 }} id="historico"{{ end }}>{{ partial "nobr-paren.html" $.Params.historico.titulo }}</h2>
+          {{- end }}
+          <div class="yearpanel">
+            {{- if $i }}
+            <h3 class="year__title">{{ $j.curso }}</h3>
+            {{- else }}
+            <h2 class="year__title">{{ $j.curso }}</h2>
             {{- end }}
-          </ul>
-          {{- with .documento }}{{ if .archivo }}
-          <p class="panel__foot"><a class="doclink" href="{{ .archivo | relURL }}">{{ partial "icons/download.html" "" }}<span>{{ .titulo }}</span></a></p>
-          {{- end }}{{ end }}
+            <ul class="members members--3{{ if not $i }} members--retratos{{ end }}">
+              {{- range $j.cargos }}
+              {{ partial "junta-member.html" (dict "c" . "current" (eq $i 0) "level" (cond (eq $i 0) 3 4)) }}
+              {{- end }}
+            </ul>
+            {{- with $j.documento }}{{ if .archivo }}
+            <p class="panel__foot"><a class="doclink" href="{{ .archivo | relURL }}">{{ partial "icons/download.html" "" }}<span>{{ .titulo }}</span></a></p>
+            {{- end }}{{ end }}
+          </div>
         </article>
         {{- end }}
       </div>
     </div>
   </section>
-  {{- end }}
   {{- with .Params.antiguos }}
   <section class="sec sec--white" aria-labelledby="miembros">
     <div class="wrap">
@@ -43,4 +43,8 @@
     </div>
   </section>
   {{- end }}
+{{ end }}
+{{ define "scripts" }}
+{{- $js := resources.Get "js/junta.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{ end }}

@@ -2,13 +2,13 @@
 title: Garbiñe Almanza Gutiérrez
 slug: garbine-almanza-gutierrez
 layout: miembro
-cargo: Vocal
+cargo: Vocal | Maquetación
 universidad: Universidad del País Vasco/Euskal Herriko Unibertsitatea
 correo: garbine.almanza@ehu.eus
 orcid: 0009-0002-0471-8987
 retrato: /imagenes/junta/garbine-almanza-gutierrez.jpg
 biodata: /wp-content/uploads/2025/12/biodata_garbine_2526.pdf
-orden: 7
+orden: 6
 ---
 Garbiñe Almanza Gutiérrez (Basauri, 2000) es graduada en Filología Hispánica por la Universidad del País Vasco / Euskal Herriko Unibertsitatea (EHU) (2020–2024), tras haber cursado previamente los dos primeros años del Grado en Biología en la misma universidad.
 
