@@ -48,6 +48,8 @@ PAGES = {
 # Differences the user approved, matched against the normalised missing sentence
 EXPECTED = [
     (r'^Tweets by ajl_info$', 'removed: the WordPress X/Twitter widget (approved)'),
+    (r'Asociación de Jóvenes Lingüistas, creada en Barcelona en 1992, está composta|Cada ano, a Asociación de Jóvenes Lingüistas organiza', 'Galician name «Asociación de Novas Lingüistas» in the Galician pages (her decision, 24 Nov 2026)'),
+    (r'^Disponible a través de la URL: http://estudiosinterlinguisticos\.com, esta nueva publicación', 'RECYT address added before the old one (her wording choice, 24 Nov 2026)'),
     (r'^Seminarios 202[456]$', 'removed: the three cycle links of Seminarios AJL, replaced by the overview of every cycle (s1, approved 24 Nov 2026)'),
     (r'^(Carmen Varo Varo \(UCA\)|Adrián Cabedo Nebot \(UV\)|María José Ginzo Villamayor \(USC\)|Magdalena Romera \(UPNA\)|Susana Quicios Molina \(UAM\)|María del Carmen Méndez Santos \(UVigo\)|Federación de Jóvenes Investigadoras Precarias|Paula Albitre Lamata \(UCM\) y José García Pérez \(UCO\)):$', 'session fields (approved 24 Nov 2026): speakers now follow the session title; the name, affiliation and title are all present'),
     (r'^\w+ \d+ de \w+ de 202[45] \| \d\d:\d\d \(CEST\) \| Inscripción$', 'session fields (approved 24 Nov 2026): the date line and the «Inscripción» link are on separate lines; both present'),

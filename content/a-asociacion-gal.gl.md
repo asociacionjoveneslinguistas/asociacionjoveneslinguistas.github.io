@@ -12,4 +12,4 @@ estatutos, esta asociación persegue os seguintes obxectivos:
 3. Favorecer a divulgación de traballos de investigación en curso mediante reunións de carácter científico, publicacións e outras iniciativas.
 4. Incitar o intercambio cultural fomentando os estudos lingüísticos das diferentes linguas da península.
 
-Cada ano, a Asociación de Jóvenes Lingüistas organiza un encontro de mocidade estudosa da linguaxe. Neste, as e os participantes terán a oportunidade de expoñer os seus proxectos así como os resultados das súas investigacións. Se tes interese en obter máis información acerca da asociación, convidámoste a visitar tamén o noso TWITTER/X e INSTAGRAM.
+Cada ano, a Asociación de Novas Lingüistas organiza un encontro de mocidade estudosa da linguaxe. Neste, as e os participantes terán a oportunidade de expoñer os seus proxectos así como os resultados das súas investigacións. Se tes interese en obter máis información acerca da asociación, convidámoste a visitar tamén o noso TWITTER/X e INSTAGRAM.

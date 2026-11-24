@@ -609,14 +609,6 @@ svg { display: block; }
 @media (min-width: 60rem) {
   .index__list { columns: 3; }
   .mast__body { padding-block: var(--space-2xl) var(--space-lg); column-gap: var(--space-2xl); }
-  .mast__names {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .mast__names li + li::before {
-    content: "/" / "";
-    padding-inline: var(--space-sm);
-  }
   .welcome__grid {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: var(--space-lg);
@@ -641,6 +633,18 @@ svg { display: block; }
   .calls__col .call { padding-block: 0 var(--space-lg); }
   .calls__col .call + .call { padding-block: var(--space-lg) 0; }
   .calls__col:last-child .call { padding-bottom: 0; }
+}
+
+/* The four other names in one row only where they fit (with the Galician name, 24 Nov 2026) */
+@media (min-width: 80rem) {
+  .mast__names {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .mast__names li + li::before {
+    content: "/" / "";
+    padding-inline: var(--space-sm);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

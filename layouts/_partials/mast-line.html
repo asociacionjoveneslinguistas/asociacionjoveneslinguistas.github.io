@@ -4,7 +4,8 @@
     {{- if .IsHome }}
     <div class="dock__brand" aria-hidden="true"><span class="dock__seal"><svg viewBox="0 0 2784 2859" aria-hidden="true" focusable="false"><use href="#ajl-seal"/></svg></span><span class="dock__name">{{ hugo.Data.sitio.nombre }}</span></div>
     {{- else }}
-    <a class="dock__brand" href="{{ "/" | relURL }}" aria-label="{{ hugo.Data.sitio.nombre }}"><span class="dock__seal"><svg viewBox="0 0 2784 2859" aria-hidden="true" focusable="false"><use href="#ajl-seal"/></svg></span><span class="dock__name">{{ hugo.Data.sitio.nombre }}</span></a>
+    {{- $n := partial "nombre-pagina.html" . }}
+    <a class="dock__brand" href="{{ "/" | relURL }}" aria-label="{{ $n.texto }}"{{ with $n.lang }} lang="{{ . }}"{{ end }}><span class="dock__seal"><svg viewBox="0 0 2784 2859" aria-hidden="true" focusable="false"><use href="#ajl-seal"/></svg></span><span class="dock__name">{{ $n.texto }}</span></a>
     {{- end }}
     <nav class="langs" aria-label="Idiomas">
       {{ partial "langs.html" . }}
