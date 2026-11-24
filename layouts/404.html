@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{- $e := hugo.Data.sitio.error404 }}
+  <section class="sec sec--white">
+    <div class="wrap">
+      <div class="prose">
+        <p>{{ $e.texto }}</p>
+        <p>{{ partial "c3.html" (dict "text" $e.enlace "href" ("/" | relURL)) }}</p>
+      </div>
+    </div>
+  </section>
+{{ end }}

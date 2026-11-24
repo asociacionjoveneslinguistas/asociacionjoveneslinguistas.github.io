@@ -7,7 +7,7 @@ cargos:
   cargo: Presidente
   nombre: David Navarro Ciurana
   universidad: Universidad Nacional de Educación a Distancia
-  orcid: ''
+  orcid: 0000-0002-8977-7822
 - miembro: ''
   cargo: Secretaria
   nombre: Olga Popova
@@ -17,7 +17,7 @@ cargos:
   cargo: Tesorera
   nombre: Noelia de la Torre Martínez
   universidad: <span lang="ca">Universitat de València</span>
-  orcid: ''
+  orcid: 0000-0001-6328-0159
 - miembro: ''
   cargo: Vocal | Vicesecretaria
   nombre: Irene Martín del Barrio
@@ -37,4 +37,4 @@ cargos:
   cargo: Vocal | Maquetación
   nombre: Marta Sánchez López
   universidad: Universidad del País Vasco / <span lang="eu">Euskal Herriko Unibertsitatea</span>
-  orcid: ''
+  orcid: 0000-0002-5373-1558

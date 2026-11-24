@@ -55,4 +55,9 @@ formulario:
   enviado: Mensaje enviado. Gracias por escribirnos.
   error: No se ha podido enviar el mensaje. Escribe a asociacionjoveneslinguistas@gmail.com.
   aviso: La Asociación de Jóvenes Lingüistas trata los datos de este formulario solo para responder a la consulta. Se guardan en Google Forms y no se ceden a terceros. Para consultarlos, rectificarlos o pedir que se supriman, escribe a [asociacionjoveneslinguistas@gmail.com](mailto:asociacionjoveneslinguistas@gmail.com).
+# Page for addresses that do not exist (404).
+error404:
+  titulo: Esta página no existe
+  texto: Puede que la dirección esté mal escrita o que la página ya no esté en la web. Prueba con el buscador o vuelve a la página de inicio.
+  enlace: Página de inicio
 

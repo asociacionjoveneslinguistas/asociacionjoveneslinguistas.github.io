@@ -5,7 +5,7 @@
     {{ partial "mast-line.html" . }}
     <div class="band__body">
       <a class="home-link" href="{{ "/" | relURL }}"><span class="home-link__seal"><svg viewBox="0 0 2784 2859" aria-hidden="true" focusable="false"><use href="#ajl-seal"/></svg></span>{{ $n := partial "nombre-pagina.html" . }}<span{{ with $n.lang }} lang="{{ . }}"{{ end }}>{{ $n.texto }}</span></a>
-      <h1 class="page-title"{{ if ne .Language.Lang "es" }} lang="{{ .Language.Lang }}"{{ end }}>{{ .Title }}</h1>
+      <h1 class="page-title"{{ if ne .Language.Lang "es" }} lang="{{ .Language.Lang }}"{{ end }}>{{ if eq .Kind "404" }}{{ hugo.Data.sitio.error404.titulo }}{{ else }}{{ .Title }}{{ end }}</h1>
     </div>
   </div>
 </header>

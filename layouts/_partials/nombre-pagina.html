@@ -1,6 +1,7 @@
-{{- /* The association's name beside the seal: the Galician name on Galician pages (her decision, 24 Nov 2026), the Spanish name elsewhere. Context: the page. Returns dict "texto" "lang". */ -}}
+{{- /* The association's name beside the seal: on Catalan, Galician, Basque and English pages, that language's name (her decisions, 24 Nov 2026); the Spanish name elsewhere. Context: the page. Returns dict "texto" "lang". */ -}}
 {{- $r := dict "texto" hugo.Data.sitio.nombre "lang" "" -}}
-{{- if eq .Language.Lang "gl" -}}
-  {{- range where hugo.Data.sitio.otros_nombres "idioma" "gl" }}{{ $r = dict "texto" .texto "lang" "gl" }}{{ end -}}
+{{- $l := .Language.Lang -}}
+{{- if ne $l "es" -}}
+  {{- range where hugo.Data.sitio.otros_nombres "idioma" $l }}{{ $r = dict "texto" .texto "lang" $l }}{{ end -}}
 {{- end -}}
 {{- return $r -}}

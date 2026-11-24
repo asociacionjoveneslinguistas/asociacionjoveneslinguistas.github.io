@@ -773,6 +773,19 @@ content:
         label: Bluesky
         type: object
         fields: *contacto
+      - name: error404
+        label: Página de dirección inexistente (404)
+        type: object
+        fields:
+          - name: titulo
+            label: Título
+            type: string
+          - name: texto
+            label: Texto
+            type: text
+          - name: enlace
+            label: Texto del enlace a la página de inicio
+            type: string
       - name: formulario
         label: Formulario de Contacto
         type: object
