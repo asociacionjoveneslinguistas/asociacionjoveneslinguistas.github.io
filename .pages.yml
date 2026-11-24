@@ -93,7 +93,7 @@ content:
     path: content
     format: yaml-frontmatter
     subfolders: false
-    exclude: [_index.md, _index.ca.md, _index.gl.md, _index.eu.md, _index.en.md, estatutos.md, congresos-anteriores.md, premios-ajl.md, ayudas-economicas.md, publicaciones.md, socios-fundadores.md, contacto.md]
+    exclude: [_index.md, _index.ca.md, _index.gl.md, _index.eu.md, _index.en.md, estatutos.md, convenio-ajl-sel.md, congresos-anteriores.md, premios-ajl.md, ayudas-economicas.md, publicaciones.md, socios-fundadores.md, contacto.md]
     view:
       fields: [title]
       primary: title
@@ -123,15 +123,52 @@ content:
     path: content/seminarios-ajl
     format: yaml-frontmatter
     view:
-      fields: [title]
+      fields: [title, inicio]
       primary: title
     fields:
       - name: title
         label: Título
         type: string
         required: true
+      - name: inicio
+        label: Fecha de la primera sesión (ordena la página Seminarios AJL)
+        type: date
+      - name: inscripcion
+        label: Enlace de inscripción para todo el ciclo (opcional)
+        type: object
+        fields:
+          - name: texto
+            label: Texto del enlace
+            type: string
+          - name: enlace
+            label: Dirección
+            type: string
+      - name: sesiones
+        label: Sesiones
+        type: object
+        list: true
+        fields:
+          - name: fecha
+            label: Fecha y hora, como se quiere mostrar
+            type: string
+          - name: ponentes
+            label: Ponentes (nombres entre **dos asteriscos** para la negrita)
+            type: string
+          - name: titulo
+            label: Título de la sesión
+            type: string
+          - name: nota
+            label: Nota (opcional)
+            type: string
+          - name: inscripcion
+            label: Enlace de inscripción de esta sesión (opcional)
+            type: string
+      - name: url
+        type: string
+        hidden: true
       - name: body
         component: cuerpo
+        label: Texto (plazos, carteles)
 
   - name: estatutos
     label: Estatutos
@@ -161,6 +198,35 @@ content:
       - name: body
         component: cuerpo
         label: Texto introductorio
+
+  - name: convenio
+    label: Convenio de colaboración AJL-SEL
+    type: file
+    path: content/convenio-ajl-sel.md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Título
+        type: string
+      - name: documento
+        label: Convenio en PDF (se muestra en el lector)
+        type: object
+        fields:
+          - name: titulo
+            label: Título del documento
+            type: string
+          - name: archivo
+            label: Archivo PDF
+            type: file
+            options:
+              media: archivos
+              extensions: [pdf]
+      - name: layout
+        type: string
+        hidden: true
+      - name: body
+        component: cuerpo
+        label: Texto
 
   - name: congreso_anual
     label: Congreso anual (texto y candidaturas de sede)
@@ -685,6 +751,10 @@ content:
         fields: *contacto
       - name: x
         label: X (Twitter)
+        type: object
+        fields: *contacto
+      - name: bluesky
+        label: Bluesky
         type: object
         fields: *contacto
 

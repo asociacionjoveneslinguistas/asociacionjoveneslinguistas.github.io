@@ -1,0 +1,14 @@
+{{ define "main" }}
+  {{- /* A seminar cycle or course: the registration link, the sessions (fields «sesiones»), then the free text and the posters. */ -}}
+  <section class="sec sec--white">
+    <div class="wrap semi">
+      {{- with .Params.inscripcion }}
+      <p class="semi__reg"><a class="link" href="{{ .enlace }}" rel="noopener">{{ .texto }}{{ partial "icons/ext.html" "ext" }}</a></p>
+      {{- end }}
+      {{- with .Params.sesiones }}{{ partial "seminario-sesiones.html" (dict "page" $ "registro" true) }}{{ end }}
+      <div class="prose">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,13 @@
+{{- /* Sessions of one seminar page, from its «sesiones» fields. Context: dict "page" "registro" (true: show registration links). */ -}}
+{{- $p := .page -}}
+<ol class="sesiones">
+  {{- range $p.Params.sesiones }}
+  <li class="sesion">
+    <p class="sesion__fecha">{{ .fecha }}</p>
+    <p class="sesion__main"><span class="sesion__titulo">{{ .titulo }}</span><span class="vh">: </span><span class="sesion__quien">{{ .ponentes | $p.RenderString }}</span></p>
+    {{- with .nota }}<p class="sesion__nota">{{ . }}</p>{{ end }}
+    {{- if $.registro }}{{ with .inscripcion }}<a class="link sesion__reg" href="{{ . }}" rel="noopener">Inscripción{{ partial "icons/ext.html" "ext" }}</a>{{ end }}{{ end }}
+  </li>
+  {{- end }}
+</ol>
+{{- /**/ -}}

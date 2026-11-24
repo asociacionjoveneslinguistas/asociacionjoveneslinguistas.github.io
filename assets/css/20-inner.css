@@ -24,7 +24,7 @@ h3, figure { margin: 0; }
   display: grid;
   justify-items: start;
   gap: var(--space-lg);
-  padding-block: var(--space-xl) var(--space-lg);
+  padding-block: var(--space-xl);
 }
 .home-link {
   display: inline-flex;
@@ -57,7 +57,7 @@ h3, figure { margin: 0; }
   overflow-wrap: anywhere;
 }
 @media (min-width: 60rem) {
-  .band__body { padding-block: var(--space-2xl) var(--space-lg); }
+  .band__body { padding-block: var(--space-2xl) var(--space-xl); }
 }
 
 /* Inner pages: the docked seal and name link to the home */

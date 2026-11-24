@@ -1,5 +1,10 @@
 ---
 title: 'Curso formativo 2026: Estadística. “Hablemos de regresión lineal”'
+inicio: '2026-06-22'
+sesiones:
+- fecha: 22, 23, 24 y 25 de junio de 2026 | 17:00 a 19:00
+  ponentes: '**Ander Egurtzegi** (CNRS/IKER)'
+  titulo: Hablemos de regresión lineal
 ---
 Por primera vez, en 2026 la Asociación de Jóvenes Lingüistas organiza un curso formativo de larga duración sobre estadística: Hablemos de regresión lineal, impartido por Ander Egurtzegi (CNRS/IKER).
 

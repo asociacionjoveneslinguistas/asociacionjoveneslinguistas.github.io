@@ -1,0 +1,18 @@
+{{- /* Seminarios AJL overview (s1, chosen 24 Nov 2026): every seminar page, newest first by «inicio»; for each, the title link and the posters, then its sessions. */ -}}
+{{- $sec := site.GetPage "/seminarios-ajl" -}}
+{{- $keyed := slice }}{{ range $sec.RegularPages }}{{ $keyed = $keyed | append (dict "k" (time.Format "2006-01-02" (.Params.inicio | default "1900-01-01")) "p" .) }}{{ end -}}
+<div class="s1">
+  {{- range sort $keyed "k" "desc" }}{{ with .p }}
+  <section class="s1__ciclo" aria-labelledby="c-{{ .File.ContentBaseName }}">
+    <div class="s1__head">
+      <h2 class="s1__title" id="c-{{ .File.ContentBaseName }}">{{ partial "enlace-flecha.html" (dict "text" .Title "href" .RelPermalink "class" "c3 c3--wrap" "icon" "c3__arrow") }}</h2>
+      {{- $imgs := slice }}{{ range findRESubmatch `!\[[^\]]*\]\(([^ )"]+)` .RawContent }}{{ $imgs = $imgs | append (index . 1) }}{{ end }}
+      {{- with $imgs }}
+      <div class="carteles">{{ range . }}<img class="cartel" src="{{ . | relURL }}" width="1414" height="2000" alt="" loading="lazy" decoding="async">{{ end }}</div>
+      {{- end }}
+    </div>
+    {{ partial "seminario-sesiones.html" (dict "page" . "registro" false) }}
+  </section>
+  {{- end }}{{ end }}
+</div>
+{{- /**/ -}}

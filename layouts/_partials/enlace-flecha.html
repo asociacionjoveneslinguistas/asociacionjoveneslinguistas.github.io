@@ -1,0 +1,5 @@
+{{- /* A link that may wrap, with the drawn arrow kept on its last word. Context: dict "text" "href" "class" "icon" (arrow class). */ -}}
+{{- $w := split .text " " -}}
+{{- $head := delimit (first (sub (len $w) 1) $w) " " -}}
+<a class="{{ .class }}" href="{{ .href }}">{{ with $head }}{{ . }} {{ end }}<span class="nowrap">{{ index $w (sub (len $w) 1) }}{{ partial "icons/arrow.html" .icon }}</span></a>
+{{- /**/ -}}

@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <section class="sec sec--white sec--intro">
+    <div class="wrap">
+      <div class="prose">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+  <section class="sec sec--white seminarios" aria-label="Seminarios">
+    <div class="wrap">
+      {{ partial "seminarios-resumen.html" . }}
+    </div>
+  </section>
+{{ end }}

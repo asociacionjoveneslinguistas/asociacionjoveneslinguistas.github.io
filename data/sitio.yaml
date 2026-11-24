@@ -23,3 +23,7 @@ x:
   etiqueta: 'TWITTER / X:'
   texto: '@ajl_info'
   enlace: https://x.com/ajl_info
+bluesky:
+  etiqueta: 'BLUESKY:'
+  texto: '@ajl-info.bsky.social'
+  enlace: https://bsky.app/profile/ajl-info.bsky.social

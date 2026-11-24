@@ -1,6 +1,6 @@
 ---
 title: Estatutos
-layout: estatutos
+layout: documento
 documento:
   titulo: Estatutos de la AJL
   archivo: /wp-content/uploads/2025/02/estatutos-ajl_actualizados-2024.pdf

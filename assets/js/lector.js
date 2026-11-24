@@ -1,4 +1,4 @@
-// PDF reader for Estatutos (mockups/inner/a/estatutos.html), on self-hosted pdfjs-dist.
+// PDF reader for the «documento» layout (Estatutos, Convenio AJL-SEL; mockups/inner/a/estatutos.html), on self-hosted pdfjs-dist.
 // The library and worker paths come from data attributes on #reader, so the page works under any base path.
 const reader = document.getElementById("reader");
 let pdfjsLib = null;

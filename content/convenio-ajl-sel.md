@@ -1,5 +1,9 @@
 ---
 title: Convenio de colaboración AJL-SEL
+layout: documento
+documento:
+  titulo: Convenio AJL-SEL
+  archivo: /wp-content/uploads/2025/02/ajl-sel-convenio-firmado.pdf
 ---
 Desde 2025, la Asociación de Jóvenes Lingüistas (AJL) y la Sociedad Española de Lingüística (SEL) cuentan con un convenio de colaboración para favorecer la interacción entre sus asociados y para promover el apoyo mutuo en actividades académicas y científicas.
 

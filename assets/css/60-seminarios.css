@@ -1,0 +1,65 @@
+/* Seminarios AJL: sessions from the «sesiones» fields, the overview, the cycle pages. Every value is a token. */
+
+/* A link that wraps, arrow glued to its last word */
+.c3--wrap { display: inline; white-space: normal; }
+.c3--wrap .c3__arrow { display: inline-block; margin-inline-start: var(--space-xs); vertical-align: -0.05em; }
+
+/* One session: date line, title, speakers, note */
+.sesiones { display: grid; align-content: start; gap: var(--space-xl); }
+.sesion { display: grid; gap: var(--space-2xs); }
+.sesion__fecha { color: var(--color-heading); font-size: var(--text-sm); font-weight: 500; line-height: var(--leading-head); font-variant-numeric: tabular-nums; }
+.sesion__main { display: grid; gap: var(--space-2xs); }
+.sesion__titulo {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  line-height: var(--leading-head);
+  letter-spacing: var(--tracking-head);
+}
+.sesion__quien { display: block; }
+.sesion__quien strong { font-weight: 600; }
+.sesion__nota { font-size: var(--text-sm); }
+.sesion__reg { display: inline-flex; align-items: center; justify-self: start; min-height: var(--hit-fine); white-space: nowrap; }
+@media (pointer: coarse) { .sesion__reg { min-height: var(--hit); } }
+
+/* Cycle page: registration link, sessions, free text */
+.semi { display: grid; gap: var(--space-2xl); }
+.semi .sesiones { max-width: var(--measure); }
+.semi__reg { font-size: var(--text-lg); }
+
+/* Posters: the A-series box of the book covers */
+.carteles { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.cartel {
+  display: block;
+  width: var(--cover-sm);
+  height: auto;
+  aspect-ratio: var(--cover-ratio);
+  object-fit: cover;
+  border: var(--rule-hair) solid var(--color-hairline);
+}
+
+/* Overview (s1, chosen by the user): programme by cycle, title and posters, then the sessions */
+.s1 { display: grid; gap: var(--space-3xl); }
+.s1__ciclo { display: grid; gap: var(--space-xl); }
+.s1__head { display: grid; align-content: start; gap: var(--space-lg); }
+.s1__title {
+  min-width: 0;
+  max-width: 24ch;
+  color: var(--color-heading);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  line-height: var(--leading-head);
+  letter-spacing: var(--tracking-head);
+}
+@media (min-width: 60rem) {
+  .s1__ciclo { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--space-lg); }
+  .s1__head { grid-column: 1 / span 5; }
+  .s1__head .cartel { width: var(--cover-md); }
+  .s1__ciclo .sesiones { grid-column: 7 / span 6; }
+}
+

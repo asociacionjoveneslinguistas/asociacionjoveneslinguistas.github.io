@@ -3,7 +3,7 @@
 :root {
   --cover-sm: 6rem;            /* variant: book-cover widths */
   --cover-md: 9rem;
-  --cover-lg: 13rem;
+  --cover-ratio: 1 / 1.414;  /* variant: every cover in the same A-series box, cropped to fill */
 }
 
 /* Sections and prose */
@@ -223,6 +223,8 @@ figure { margin: 0; }
   grid-area: cover;
   width: 100%;
   height: auto;
+  aspect-ratio: var(--cover-ratio);
+  object-fit: cover;
   border: var(--rule-hair) solid var(--color-hairline);
 }
 .ed__meta { grid-area: meta; display: grid; align-content: start; justify-items: start; gap: var(--space-2xs); }
@@ -298,7 +300,7 @@ figure { margin: 0; }
   .map { grid-column: 1 / span 7; }
   .atlas .block--congress { grid-column: 8 / span 5; align-self: end; }
   .eds { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ed--lead { grid-row: span 2; grid-template-columns: var(--cover-lg) minmax(0, 1fr); }
+  .ed--lead { grid-column: 1 / -1; }
 }
 @media (pointer: coarse) {
   .chron__ed, .chron__date, .chron__book { min-height: var(--hit); }
@@ -389,7 +391,7 @@ figure { margin: 0; }
   border-top: var(--rule-hair) solid var(--color-hairline);
 }
 .row:last-child { border-bottom: var(--rule-hair) solid var(--color-hairline); }
-.row__cover .cover { width: 100%; }
+.row__cover .cover { width: 100%; aspect-ratio: var(--cover-ratio); object-fit: cover; }
 .row .cite {
   grid-column: 2;
   max-width: 50ch;

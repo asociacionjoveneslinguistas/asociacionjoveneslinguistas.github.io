@@ -24,7 +24,7 @@
 {{- end }}
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&amp;display=swap">
 {{- $css := slice }}
-{{- range slice "10-system" "20-inner" "30-junta" "40-inner-b" "50-site" }}{{ $css = $css | append (resources.Get (printf "css/%s.css" .)) }}{{ end }}
+{{- range slice "10-system" "20-inner" "30-junta" "40-inner-b" "50-site" "60-seminarios" }}{{ $css = $css | append (resources.Get (printf "css/%s.css" .)) }}{{ end }}
 {{- $css = $css | resources.Concat "css/sitio.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 </head>

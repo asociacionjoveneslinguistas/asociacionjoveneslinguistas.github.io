@@ -30,8 +30,8 @@
   <section class="sec sec--page palmares" aria-labelledby="palmares">
     <div class="wrap sec__inner">
       <h2 class="sec__title" id="palmares">{{ .titulo }}</h2>
-      <ol class="editions">
-        {{- range .ediciones }}
+      <ol class="editions" reversed>
+        {{- range collections.Reverse .ediciones }}
         <li class="edition">
           <h3>{{ .edicion }}</h3>
           <p class="edition__thesis"><em>{{ .tesis }}</em></p>
@@ -59,7 +59,7 @@
       <div class="resgroup">
         <h3>{{ .titulo | $.RenderString }}</h3>
         <ul class="reslist">
-          {{- range .enlaces }}
+          {{- range collections.Reverse .enlaces }}
           <li><a class="link" href="{{ .archivo | relURL }}">{{ .nombre }}</a></li>
           {{- end }}
         </ul>

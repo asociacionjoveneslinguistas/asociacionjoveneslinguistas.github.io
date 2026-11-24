@@ -48,6 +48,9 @@ PAGES = {
 # Differences the user approved, matched against the normalised missing sentence
 EXPECTED = [
     (r'^Tweets by ajl_info$', 'removed: the WordPress X/Twitter widget (approved)'),
+    (r'^Seminarios 202[456]$', 'removed: the three cycle links of Seminarios AJL, replaced by the overview of every cycle (s1, approved 24 Nov 2026)'),
+    (r'^(Carmen Varo Varo \(UCA\)|Adrián Cabedo Nebot \(UV\)|María José Ginzo Villamayor \(USC\)|Magdalena Romera \(UPNA\)|Susana Quicios Molina \(UAM\)|María del Carmen Méndez Santos \(UVigo\)|Federación de Jóvenes Investigadoras Precarias|Paula Albitre Lamata \(UCM\) y José García Pérez \(UCO\)):$', 'session fields (approved 24 Nov 2026): speakers now follow the session title; the name, affiliation and title are all present'),
+    (r'^\w+ \d+ de \w+ de 202[45] \| \d\d:\d\d \(CEST\) \| Inscripción$', 'session fields (approved 24 Nov 2026): the date line and the «Inscripción» link are on separate lines; both present'),
     (r'^[–…\.]+$', 'removed: WordPress spacer line («–», «……»), replaced by hairlines in the approved template'),
     (r'^V_Edición_Premios_Trayectoria_Predoctoral_AJL$', 'file-block file name: the approved template names the file by its heading «Bases V Edición Premios AJL»'),
     (r'^Descarga$', 'file-block button label, kept as «Descarga» in «Documentos»'),

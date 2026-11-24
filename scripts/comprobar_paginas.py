@@ -61,6 +61,7 @@ LAYOUT_JS = r"""
     const b = blockOf(el);
     const own = b ? b.textContent.replace(/\s+/g, ' ').trim() : txt;
     if (own.length > txt.length + 2) continue;  // a link inside running text may wrap like the text around it
+    if (el.classList.contains('c3--wrap')) continue;  // Seminarios AJL cycle titles: heading links that wrap, arrow kept on the last word (approved s1, 24 Nov 2026)
     const range = document.createRange();
     range.selectNodeContents(el);
     const tops = new Set();
@@ -195,7 +196,7 @@ async def check(browser, path, width):
     if broken:
         res['fail'].append('broken images: ' + ', '.join(broken))
 
-    if path == '/estatutos/':
+    if path in ('/estatutos/', '/convenio-ajl-sel/'):
         await pg.evaluate("document.getElementById('reader').scrollIntoView()")
         try:
             await pg.wait_for_function("document.getElementById('reader').dataset.ready === 'true' && document.querySelector('.reader__sheet[data-drawn]')", timeout=15000)
