@@ -773,6 +773,48 @@ content:
         label: Bluesky
         type: object
         fields: *contacto
+      - name: formulario
+        label: Formulario de Contacto
+        type: object
+        fields:
+          - name: titulo
+            label: Título sobre el formulario
+            type: string
+          - name: accion
+            type: string
+            hidden: true
+          - name: campos
+            label: Campos (el orden y los identificadores son los del Google Form)
+            type: object
+            list: true
+            fields:
+              - name: etiqueta
+                label: Etiqueta
+                type: string
+              - name: entrada
+                type: string
+                hidden: true
+              - name: tipo
+                type: string
+                hidden: true
+              - name: autocompletar
+                type: string
+                hidden: true
+          - name: boton
+            label: Texto del botón
+            type: string
+          - name: enviando
+            label: Mensaje mientras se envía
+            type: string
+          - name: enviado
+            label: Mensaje tras el envío
+            type: string
+          - name: error
+            label: Mensaje si falla el envío
+            type: string
+          - name: aviso
+            label: Aviso de protección de datos
+            type: text
 
   - name: menu
     label: Menú y mapa del sitio

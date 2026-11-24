@@ -88,3 +88,55 @@ h4 { margin: 0; }
   margin-top: var(--space-2xl);
 }
 .logos img { display: block; max-width: 100%; height: auto; }
+
+/* Contacto form (the association's Google Form): labels in slate, white fields with a slate edge, the send button as a sage pill */
+.cformsec .sec__head { margin-bottom: var(--space-lg); }
+.cform__card { max-width: 46rem; gap: var(--space-lg); }
+.cform { display: grid; gap: var(--space-md); }
+.cform__field { display: grid; gap: var(--space-2xs); }
+.cform label { color: var(--color-heading); font-size: var(--text-sm); font-weight: 600; line-height: var(--leading-head); }
+.cform input,
+.cform textarea {
+  width: 100%;
+  min-height: var(--hit);
+  padding: var(--space-xs) var(--space-sm);
+  border: var(--rule-hair) solid var(--color-heading);
+  border-radius: var(--radius-block);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+.cform textarea { min-height: 10rem; resize: vertical; }
+.cform input:focus-visible,
+.cform textarea:focus-visible { outline: var(--ring) solid var(--color-focus); outline-offset: var(--ring-offset); }
+.cform__trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cform__send {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit);
+  margin-top: var(--space-xs);
+  padding: 0 var(--space-xl);
+  border: var(--rule-hair) solid var(--color-heading);
+  border-radius: var(--radius-pill);
+  background: var(--color-band);
+  color: var(--color-heading);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+.cform__send:active { transform: translateY(1px); }
+.cform__send:disabled { opacity: 0.5; cursor: not-allowed; }
+.cform__status { min-height: 1.6em; color: var(--color-heading); font-weight: 500; }
+.cform__status:empty { min-height: 0; }
+.cform__aviso { max-width: var(--measure); font-size: var(--text-sm); }
+.cform__aviso a { color: var(--color-accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+@media (hover: hover) and (pointer: fine) {
+  .cform__send:not(:disabled):hover { background: var(--color-tint); }
+  .cform__aviso a:hover { color: var(--color-heading); }
+}
+@media (prefers-reduced-motion: reduce) { .cform__send:active { transform: none; } }

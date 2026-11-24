@@ -29,3 +29,30 @@ bluesky:
   etiqueta: 'BLUESKY:'
   texto: '@ajl-info.bsky.social'
   enlace: https://bsky.app/profile/ajl-info.bsky.social
+# Contacto form: the association's Google Form «Contact form AJL»; «entrada» is the form's field id (technical, do not change).
+formulario:
+  titulo: Formulario de contacto
+  accion: https://docs.google.com/forms/d/e/1FAIpQLSdkEvnHBHEwVdIjA7NW5nxIM207arPJekWP9M1_zzkVn-esxg/formResponse
+  campos:
+  - etiqueta: Nombre
+    entrada: entry.287050082
+    tipo: text
+    autocompletar: name
+  - etiqueta: Correo electrónico
+    entrada: entry.1498027300
+    tipo: email
+    autocompletar: email
+  - etiqueta: Asunto
+    entrada: entry.1327698987
+    tipo: text
+    autocompletar: 'off'
+  - etiqueta: Mensaje
+    entrada: entry.2141608932
+    tipo: textarea
+    autocompletar: 'off'
+  boton: Enviar
+  enviando: Enviando…
+  enviado: Mensaje enviado. Gracias por escribirnos.
+  error: No se ha podido enviar el mensaje. Escribe a asociacionjoveneslinguistas@gmail.com.
+  aviso: La Asociación de Jóvenes Lingüistas trata los datos de este formulario solo para responder a la consulta. Se guardan en Google Forms y no se ceden a terceros. Para consultarlos, rectificarlos o pedir que se supriman, escribe a [asociacionjoveneslinguistas@gmail.com](mailto:asociacionjoveneslinguistas@gmail.com).
+

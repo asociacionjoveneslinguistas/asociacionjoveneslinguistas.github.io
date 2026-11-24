@@ -11,4 +11,33 @@
       </dl>
     </div>
   </section>
+  {{- with $s.formulario }}
+  <section class="sec sec--page cformsec" aria-labelledby="cform-title">
+    <div class="wrap">
+      <h2 class="sec__head" id="cform-title">{{ .titulo }}</h2>
+      <div class="card bleed cform__card">
+        <form class="cform" id="cform" action="{{ .accion }}" method="post" target="_blank" data-sending="{{ .enviando }}" data-sent="{{ .enviado }}" data-error="{{ .error }}">
+          {{- range $i, $c := .campos }}
+          <div class="cform__field">
+            <label for="cf-{{ $i }}">{{ $c.etiqueta }}</label>
+            {{- if eq $c.tipo "textarea" }}
+            <textarea id="cf-{{ $i }}" name="{{ $c.entrada }}" rows="7" required></textarea>
+            {{- else }}
+            <input id="cf-{{ $i }}" name="{{ $c.entrada }}" type="{{ $c.tipo }}" autocomplete="{{ $c.autocompletar }}" required>
+            {{- end }}
+          </div>
+          {{- end }}
+          <div class="cform__trap" aria-hidden="true"><label for="cf-web">Web</label><input id="cf-web" name="web" type="text" tabindex="-1" autocomplete="off"></div>
+          <button class="cform__send" type="submit">{{ .boton }}</button>
+          <p class="cform__status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="cform__aviso">{{ .aviso | $.RenderString }}</p>
+      </div>
+    </div>
+  </section>
+  {{- end }}
+{{ end }}
+{{ define "scripts" }}
+{{- $js := resources.Get "js/contacto.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{ end }}
